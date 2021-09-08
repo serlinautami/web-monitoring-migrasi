@@ -8,6 +8,11 @@ window._ = require('lodash');
 
 window.axios = require('axios');
 
+window.coreui = require('@coreui/coreui/dist/js/coreui.bundle')
+
+require('@coreui/utils/dist/coreui-utils')
+require('simplebar/dist/simplebar');
+
 window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 
 /**

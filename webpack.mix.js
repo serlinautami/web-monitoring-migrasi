@@ -12,6 +12,6 @@ const mix = require('laravel-mix');
  */
 
 mix.js('resources/js/app.js', 'public/js')
-    .postCss('resources/css/app.css', 'public/css', [
-        //
-    ]);
+    .sass('resources/scss/app.scss', 'public/css', []);
+mix.copyDirectory('resources/assets', 'public/assets');
+mix.copyDirectory('./node_modules/@coreui/icons', 'public/icons');
