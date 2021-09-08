@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+<html lang="en">
 
 <head>
     <base href="./">
@@ -27,20 +27,13 @@
     <meta name="msapplication-TileColor" content="#ffffff">
     <meta name="msapplication-TileImage" content="assets/favicon/ms-icon-144x144.png">
     <meta name="theme-color" content="#ffffff">
-    <!-- Main styles for this application-->
     @include('layouts.styles')
 </head>
 
 <body>
-    @include('layouts.sidebar')
-    <div class="wrapper d-flex flex-column min-vh-100 bg-light">
-        @include('layouts.header')
-        <div class="body flex-grow-1 px-3">
-            @yield('content')
-        </div>
-        @include('layouts.footer')
+    <div class="bg-light min-vh-100 d-flex flex-row align-items-center">
+        @yield('content')
     </div>
-
     @include('layouts.script')
 </body>
 
