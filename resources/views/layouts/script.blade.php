@@ -4,4 +4,4 @@
 </script>
 <script src="https://cdn.jsdelivr.net/npm/prismjs@1.24.1/plugins/normalize-whitespace/prism-normalize-whitespace.js">
 </script>
-<script src="js/app.js"></script>
+<script src="/js/app.js"></script>

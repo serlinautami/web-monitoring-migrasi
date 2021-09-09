@@ -9507,8 +9507,6 @@ module.exports = {
 
 __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
 
-__webpack_require__(/*! ./charts */ "./resources/js/charts.js");
-
 __webpack_require__(/*! ./colors */ "./resources/js/colors.js");
 
 __webpack_require__(/*! ./popovers */ "./resources/js/popovers.js");
@@ -9516,8 +9514,6 @@ __webpack_require__(/*! ./popovers */ "./resources/js/popovers.js");
 __webpack_require__(/*! ./toasts */ "./resources/js/toasts.js");
 
 __webpack_require__(/*! ./tooltips */ "./resources/js/tooltips.js");
-
-__webpack_require__(/*! ./widgets */ "./resources/js/widgets.js");
 
 __webpack_require__(/*! ./main */ "./resources/js/main.js");
 
@@ -9560,149 +9556,6 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 
 /***/ }),
 
-/***/ "./resources/js/charts.js":
-/*!********************************!*\
-  !*** ./resources/js/charts.js ***!
-  \********************************/
-/***/ (() => {
-
-/* global Chart */
-
-/**
- * --------------------------------------------------------------------------
- * CoreUI Boostrap Admin Template (v4.0.1): main.js
- * Licensed under MIT (https://coreui.io/license)
- * --------------------------------------------------------------------------
- */
-// random Numbers
-var random = function random() {
-  return Math.round(Math.random() * 100);
-}; // eslint-disable-next-line no-unused-vars
-
-
-var lineChart = new Chart(document.getElementById('canvas-1'), {
-  type: 'line',
-  data: {
-    labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
-    datasets: [{
-      label: 'My First dataset',
-      backgroundColor: 'rgba(220, 220, 220, 0.2)',
-      borderColor: 'rgba(220, 220, 220, 1)',
-      pointBackgroundColor: 'rgba(220, 220, 220, 1)',
-      pointBorderColor: '#fff',
-      data: [random(), random(), random(), random(), random(), random(), random()]
-    }, {
-      label: 'My Second dataset',
-      backgroundColor: 'rgba(151, 187, 205, 0.2)',
-      borderColor: 'rgba(151, 187, 205, 1)',
-      pointBackgroundColor: 'rgba(151, 187, 205, 1)',
-      pointBorderColor: '#fff',
-      data: [random(), random(), random(), random(), random(), random(), random()]
-    }]
-  },
-  options: {
-    responsive: true
-  }
-}); // eslint-disable-next-line no-unused-vars
-
-var barChart = new Chart(document.getElementById('canvas-2'), {
-  type: 'bar',
-  data: {
-    labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
-    datasets: [{
-      backgroundColor: 'rgba(220, 220, 220, 0.5)',
-      borderColor: 'rgba(220, 220, 220, 0.8)',
-      highlightFill: 'rgba(220, 220, 220, 0.75)',
-      highlightStroke: 'rgba(220, 220, 220, 1)',
-      data: [random(), random(), random(), random(), random(), random(), random()]
-    }, {
-      backgroundColor: 'rgba(151, 187, 205, 0.5)',
-      borderColor: 'rgba(151, 187, 205, 0.8)',
-      highlightFill: 'rgba(151, 187, 205, 0.75)',
-      highlightStroke: 'rgba(151, 187, 205, 1)',
-      data: [random(), random(), random(), random(), random(), random(), random()]
-    }]
-  },
-  options: {
-    responsive: true
-  }
-}); // eslint-disable-next-line no-unused-vars
-
-var doughnutChart = new Chart(document.getElementById('canvas-3'), {
-  type: 'doughnut',
-  data: {
-    labels: ['Red', 'Green', 'Yellow'],
-    datasets: [{
-      data: [300, 50, 100],
-      backgroundColor: ['#FF6384', '#36A2EB', '#FFCE56'],
-      hoverBackgroundColor: ['#FF6384', '#36A2EB', '#FFCE56']
-    }]
-  },
-  options: {
-    responsive: true
-  }
-}); // eslint-disable-next-line no-unused-vars
-
-var radarChart = new Chart(document.getElementById('canvas-4'), {
-  type: 'radar',
-  data: {
-    labels: ['Eating', 'Drinking', 'Sleeping', 'Designing', 'Coding', 'Cycling', 'Running'],
-    datasets: [{
-      label: 'My First dataset',
-      backgroundColor: 'rgba(220, 220, 220, 0.2)',
-      borderColor: 'rgba(220, 220, 220, 1)',
-      pointBackgroundColor: 'rgba(220, 220, 220, 1)',
-      pointBorderColor: '#fff',
-      pointHighlightFill: '#fff',
-      pointHighlightStroke: 'rgba(220, 220, 220, 1)',
-      data: [65, 59, 90, 81, 56, 55, 40]
-    }, {
-      label: 'My Second dataset',
-      backgroundColor: 'rgba(151, 187, 205, 0.2)',
-      borderColor: 'rgba(151, 187, 205, 1)',
-      pointBackgroundColor: 'rgba(151, 187, 205, 1)',
-      pointBorderColor: '#fff',
-      pointHighlightFill: '#fff',
-      pointHighlightStroke: 'rgba(151, 187, 205, 1)',
-      data: [28, 48, 40, 19, 96, 27, 100]
-    }]
-  },
-  options: {
-    responsive: true
-  }
-}); // eslint-disable-next-line no-unused-vars
-
-var pieChart = new Chart(document.getElementById('canvas-5'), {
-  type: 'pie',
-  data: {
-    labels: ['Red', 'Green', 'Yellow'],
-    datasets: [{
-      data: [300, 50, 100],
-      backgroundColor: ['#FF6384', '#36A2EB', '#FFCE56'],
-      hoverBackgroundColor: ['#FF6384', '#36A2EB', '#FFCE56']
-    }]
-  },
-  options: {
-    responsive: true
-  }
-}); // eslint-disable-next-line no-unused-vars
-
-var polarAreaChart = new Chart(document.getElementById('canvas-6'), {
-  type: 'polarArea',
-  data: {
-    labels: ['Red', 'Green', 'Yellow', 'Grey', 'Blue'],
-    datasets: [{
-      data: [11, 16, 7, 3, 14],
-      backgroundColor: ['#FF6384', '#4BC0C0', '#FFCE56', '#E7E9ED', '#36A2EB']
-    }]
-  },
-  options: {
-    responsive: true
-  }
-});
-
-/***/ }),
-
 /***/ "./resources/js/colors.js":
 /*!********************************!*\
   !*** ./resources/js/colors.js ***!
@@ -9731,285 +9584,93 @@ document.querySelectorAll('.theme-color').forEach(function (element) {
 /*!******************************!*\
   !*** ./resources/js/main.js ***!
   \******************************/
-/***/ (() => {
+/***/ ((__unused_webpack_module, __unused_webpack_exports, __webpack_require__) => {
 
-/* global Chart, coreui */
-
-/**
- * --------------------------------------------------------------------------
- * CoreUI Boostrap Admin Template (v4.0.1): main.js
- * Licensed under MIT (https://coreui.io/license)
- * --------------------------------------------------------------------------
- */
-// Disable the on-canvas tooltip
-Chart.defaults.pointHitDetectionRadius = 1;
-Chart.defaults.plugins.tooltip.enabled = false;
-Chart.defaults.plugins.tooltip.mode = 'index';
-Chart.defaults.plugins.tooltip.position = 'nearest';
-Chart.defaults.plugins.tooltip.external = coreui.ChartJS.customTooltips;
-Chart.defaults.defaultFontColor = '#646470';
-
-var random = function random(min, max) {
-  // eslint-disable-next-line no-mixed-operators
-  return Math.floor(Math.random() * (max - min + 1) + min);
-}; // eslint-disable-next-line no-unused-vars
+var _require = __webpack_require__(/*! axios */ "./node_modules/axios/index.js"),
+    axios = _require["default"]; // on press detail user
 
 
-var cardChart1 = new Chart(document.getElementById('card-chart1'), {
-  type: 'line',
-  data: {
-    labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
-    datasets: [{
-      label: 'My First dataset',
-      backgroundColor: 'transparent',
-      borderColor: 'rgba(255,255,255,.55)',
-      pointBackgroundColor: coreui.Utils.getStyle('--cui-primary'),
-      data: [65, 59, 84, 84, 51, 55, 40]
-    }]
-  },
-  options: {
-    plugins: {
-      legend: {
-        display: false
+if (document.querySelector('#list-user')) {
+  var modal = document.getElementById('modaldetail');
+  modal.addEventListener('show.coreui.modal', function (e) {
+    var button = e.relatedTarget;
+    var id = button.getAttribute('data-user-id');
+    axios.get("/user/".concat(id)).then(function (res) {
+      var _res$data;
+
+      console.log('res.data', res);
+      var user = (_res$data = res.data) === null || _res$data === void 0 ? void 0 : _res$data.data;
+
+      if (user) {
+        // field
+        var name = modal.querySelector('[data-detail-name]');
+        var email = modal.querySelector('[data-detail-email]');
+        var dob = modal.querySelector('[data-detail-dob]');
+        var phone = modal.querySelector('[data-detail-phone]');
+        var role = modal.querySelector('[data-detail-role]');
+        var status = modal.querySelector('[data-detail-status]'); // action
+
+        var editBtn = modal.querySelector('.btn-edit');
+
+        var _deleteBtn = modal.querySelector('.btn-delete');
+
+        name.textContent = user.name;
+        email.textContent = user.email;
+        dob.textContent = user.dob;
+        phone.textContent = user.phone;
+        role.textContent = user.role;
+        status.textContent = user.status;
+        editBtn.setAttribute('href', "/user/edit/".concat(id));
+
+        _deleteBtn.setAttribute('data-user-id', id);
       }
-    },
-    maintainAspectRatio: false,
-    scales: {
-      x: {
-        grid: {
-          display: false,
-          drawBorder: false
-        },
-        ticks: {
-          display: false
-        }
-      },
-      y: {
-        min: 30,
-        max: 89,
-        display: false,
-        grid: {
-          display: false
-        },
-        ticks: {
-          display: false
-        }
+    })["catch"](function (err) {
+      console.log('err', err);
+      window.alert('Terjadi kesalahan');
+    });
+  });
+  modal.addEventListener('hide.coreui.modal', function (e) {
+    var name = modal.querySelector('[data-detail-name]');
+    var email = modal.querySelector('[data-detail-email]');
+    var dob = modal.querySelector('[data-detail-dob]');
+    var phone = modal.querySelector('[data-detail-phone]');
+    var role = modal.querySelector('[data-detail-role]');
+    var status = modal.querySelector('[data-detail-status]');
+    var editBtn = modal.querySelector('.btn-edit');
+    editBtn.setAttribute('href', "#");
+    name.textContent = '';
+    email.textContent = '';
+    dob.textContent = '';
+    phone.textContent = '';
+    role.textContent = '';
+    status.textContent = '';
+  });
+  var deleteBtn = modal.querySelector('.btn-delete');
+  var statusBtn = modal.querySelector('.btn-status');
+  console.log('deleteBtn', deleteBtn);
+
+  if (deleteBtn) {
+    console.log('masuk');
+
+    deleteBtn.onclick = function () {
+      var id = this.getAttribute('data-user-id');
+
+      if (id) {
+        axios["delete"]("/user/delete/".concat(id)).then(function (res) {
+          window.alert('Berhasil menghapus user');
+          window.location.reload();
+        })["catch"](function (error) {
+          console.log('error', error);
+          window.alert('Terjadi kesalahan');
+        });
       }
-    },
-    elements: {
-      line: {
-        borderWidth: 1,
-        tension: 0.4
-      },
-      point: {
-        radius: 4,
-        hitRadius: 10,
-        hoverRadius: 4
-      }
-    }
+    };
   }
-}); // eslint-disable-next-line no-unused-vars
 
-var cardChart2 = new Chart(document.getElementById('card-chart2'), {
-  type: 'line',
-  data: {
-    labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
-    datasets: [{
-      label: 'My First dataset',
-      backgroundColor: 'transparent',
-      borderColor: 'rgba(255,255,255,.55)',
-      pointBackgroundColor: coreui.Utils.getStyle('--cui-info'),
-      data: [1, 18, 9, 17, 34, 22, 11]
-    }]
-  },
-  options: {
-    plugins: {
-      legend: {
-        display: false
-      }
-    },
-    maintainAspectRatio: false,
-    scales: {
-      x: {
-        grid: {
-          display: false,
-          drawBorder: false
-        },
-        ticks: {
-          display: false
-        }
-      },
-      y: {
-        min: -9,
-        max: 39,
-        display: false,
-        grid: {
-          display: false
-        },
-        ticks: {
-          display: false
-        }
-      }
-    },
-    elements: {
-      line: {
-        borderWidth: 1
-      },
-      point: {
-        radius: 4,
-        hitRadius: 10,
-        hoverRadius: 4
-      }
-    }
-  }
-}); // eslint-disable-next-line no-unused-vars
+  ;
 
-var cardChart3 = new Chart(document.getElementById('card-chart3'), {
-  type: 'line',
-  data: {
-    labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
-    datasets: [{
-      label: 'My First dataset',
-      backgroundColor: 'rgba(255,255,255,.2)',
-      borderColor: 'rgba(255,255,255,.55)',
-      data: [78, 81, 80, 45, 34, 12, 40],
-      fill: true
-    }]
-  },
-  options: {
-    plugins: {
-      legend: {
-        display: false
-      }
-    },
-    maintainAspectRatio: false,
-    scales: {
-      x: {
-        display: false
-      },
-      y: {
-        display: false
-      }
-    },
-    elements: {
-      line: {
-        borderWidth: 2,
-        tension: 0.4
-      },
-      point: {
-        radius: 0,
-        hitRadius: 10,
-        hoverRadius: 4
-      }
-    }
-  }
-}); // eslint-disable-next-line no-unused-vars
-
-var cardChart4 = new Chart(document.getElementById('card-chart4'), {
-  type: 'bar',
-  data: {
-    labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December', 'January', 'February', 'March', 'April'],
-    datasets: [{
-      label: 'My First dataset',
-      backgroundColor: 'rgba(255,255,255,.2)',
-      borderColor: 'rgba(255,255,255,.55)',
-      data: [78, 81, 80, 45, 34, 12, 40, 85, 65, 23, 12, 98, 34, 84, 67, 82],
-      barPercentage: 0.6
-    }]
-  },
-  options: {
-    maintainAspectRatio: false,
-    plugins: {
-      legend: {
-        display: false
-      }
-    },
-    scales: {
-      x: {
-        grid: {
-          display: false,
-          drawTicks: false
-        },
-        ticks: {
-          display: false
-        }
-      },
-      y: {
-        grid: {
-          display: false,
-          drawBorder: false,
-          drawTicks: false
-        },
-        ticks: {
-          display: false
-        }
-      }
-    }
-  }
-}); // eslint-disable-next-line no-unused-vars
-
-var mainChart = new Chart(document.getElementById('main-chart'), {
-  type: 'line',
-  data: {
-    labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
-    datasets: [{
-      label: 'My First dataset',
-      backgroundColor: coreui.Utils.hexToRgba(coreui.Utils.getStyle('--cui-info'), 10),
-      borderColor: coreui.Utils.getStyle('--cui-info'),
-      pointHoverBackgroundColor: '#fff',
-      borderWidth: 2,
-      data: [random(50, 200), random(50, 200), random(50, 200), random(50, 200), random(50, 200), random(50, 200), random(50, 200)],
-      fill: true
-    }, {
-      label: 'My Second dataset',
-      borderColor: coreui.Utils.getStyle('--cui-success'),
-      pointHoverBackgroundColor: '#fff',
-      borderWidth: 2,
-      data: [random(50, 200), random(50, 200), random(50, 200), random(50, 200), random(50, 200), random(50, 200), random(50, 200)]
-    }, {
-      label: 'My Third dataset',
-      borderColor: coreui.Utils.getStyle('--cui-danger'),
-      pointHoverBackgroundColor: '#fff',
-      borderWidth: 1,
-      borderDash: [8, 5],
-      data: [65, 65, 65, 65, 65, 65, 65]
-    }]
-  },
-  options: {
-    maintainAspectRatio: false,
-    plugins: {
-      legend: {
-        display: false
-      }
-    },
-    scales: {
-      x: {
-        grid: {
-          drawOnChartArea: false
-        }
-      },
-      y: {
-        ticks: {
-          beginAtZero: true,
-          maxTicksLimit: 5,
-          stepSize: Math.ceil(250 / 5),
-          max: 250
-        }
-      }
-    },
-    elements: {
-      line: {
-        tension: 0.4
-      },
-      point: {
-        radius: 0,
-        hitRadius: 10,
-        hoverRadius: 4,
-        hoverBorderWidth: 3
-      }
-    }
-  }
-});
+  if (statusBtn) {}
+}
 
 /***/ }),
 
@@ -10077,503 +9738,6 @@ if (toastTrigger) {
 document.querySelectorAll('[data-coreui-toggle="tooltip"]').forEach(function (element) {
   // eslint-disable-next-line no-new
   new coreui.Tooltip(element);
-});
-
-/***/ }),
-
-/***/ "./resources/js/widgets.js":
-/*!*********************************!*\
-  !*** ./resources/js/widgets.js ***!
-  \*********************************/
-/***/ (() => {
-
-/* global Chart, coreui */
-
-/**
- * --------------------------------------------------------------------------
- * CoreUI Boostrap Admin Template (v4.0.1): main.js
- * Licensed under MIT (https://coreui.io/license)
- * --------------------------------------------------------------------------
- */
-// Disable the on-canvas tooltip
-Chart.defaults.pointHitDetectionRadius = 1;
-Chart.defaults.plugins.tooltip.enabled = false;
-Chart.defaults.plugins.tooltip.mode = 'index';
-Chart.defaults.plugins.tooltip.position = 'nearest';
-Chart.defaults.plugins.tooltip.external = coreui.ChartJS.customTooltips;
-Chart.defaults.defaultFontColor = '#646470'; // eslint-disable-next-line no-unused-vars
-
-var cardChart1 = new Chart(document.getElementById('card-chart1'), {
-  type: 'line',
-  data: {
-    labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
-    datasets: [{
-      label: 'My First dataset',
-      backgroundColor: 'transparent',
-      borderColor: 'rgba(255,255,255,.55)',
-      pointBackgroundColor: coreui.Utils.getStyle('--cui-primary'),
-      data: [65, 59, 84, 84, 51, 55, 40]
-    }]
-  },
-  options: {
-    plugins: {
-      legend: {
-        display: false
-      }
-    },
-    maintainAspectRatio: false,
-    scales: {
-      x: {
-        grid: {
-          display: false,
-          drawBorder: false
-        },
-        ticks: {
-          display: false
-        }
-      },
-      y: {
-        min: 30,
-        max: 89,
-        display: false,
-        grid: {
-          display: false
-        },
-        ticks: {
-          display: false
-        }
-      }
-    },
-    elements: {
-      line: {
-        borderWidth: 1,
-        tension: 0.4
-      },
-      point: {
-        radius: 4,
-        hitRadius: 10,
-        hoverRadius: 4
-      }
-    }
-  }
-}); // eslint-disable-next-line no-unused-vars
-
-var cardChart2 = new Chart(document.getElementById('card-chart2'), {
-  type: 'line',
-  data: {
-    labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
-    datasets: [{
-      label: 'My First dataset',
-      backgroundColor: 'transparent',
-      borderColor: 'rgba(255,255,255,.55)',
-      pointBackgroundColor: coreui.Utils.getStyle('--cui-info'),
-      data: [1, 18, 9, 17, 34, 22, 11]
-    }]
-  },
-  options: {
-    plugins: {
-      legend: {
-        display: false
-      }
-    },
-    maintainAspectRatio: false,
-    scales: {
-      x: {
-        grid: {
-          display: false,
-          drawBorder: false
-        },
-        ticks: {
-          display: false
-        }
-      },
-      y: {
-        min: -9,
-        max: 39,
-        display: false,
-        grid: {
-          display: false
-        },
-        ticks: {
-          display: false
-        }
-      }
-    },
-    elements: {
-      line: {
-        borderWidth: 1
-      },
-      point: {
-        radius: 4,
-        hitRadius: 10,
-        hoverRadius: 4
-      }
-    }
-  }
-}); // eslint-disable-next-line no-unused-vars
-
-var cardChart3 = new Chart(document.getElementById('card-chart3'), {
-  type: 'line',
-  data: {
-    labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
-    datasets: [{
-      label: 'My First dataset',
-      backgroundColor: 'rgba(255,255,255,.2)',
-      borderColor: 'rgba(255,255,255,.55)',
-      data: [78, 81, 80, 45, 34, 12, 40],
-      fill: true
-    }]
-  },
-  options: {
-    plugins: {
-      legend: {
-        display: false
-      }
-    },
-    maintainAspectRatio: false,
-    scales: {
-      x: {
-        display: false
-      },
-      y: {
-        display: false
-      }
-    },
-    elements: {
-      line: {
-        borderWidth: 2,
-        tension: 0.4
-      },
-      point: {
-        radius: 0,
-        hitRadius: 10,
-        hoverRadius: 4
-      }
-    }
-  }
-}); // eslint-disable-next-line no-unused-vars
-
-var cardChart4 = new Chart(document.getElementById('card-chart4'), {
-  type: 'bar',
-  data: {
-    labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December', 'January', 'February', 'March', 'April'],
-    datasets: [{
-      label: 'My First dataset',
-      backgroundColor: 'rgba(255,255,255,.2)',
-      borderColor: 'rgba(255,255,255,.55)',
-      data: [78, 81, 80, 45, 34, 12, 40, 85, 65, 23, 12, 98, 34, 84, 67, 82],
-      barPercentage: 0.6
-    }]
-  },
-  options: {
-    maintainAspectRatio: false,
-    plugins: {
-      legend: {
-        display: false
-      }
-    },
-    scales: {
-      x: {
-        grid: {
-          display: false,
-          drawTicks: false
-        },
-        ticks: {
-          display: false
-        }
-      },
-      y: {
-        grid: {
-          display: false,
-          drawBorder: false,
-          drawTicks: false
-        },
-        ticks: {
-          display: false
-        }
-      }
-    }
-  }
-}); // Random Numbers
-// eslint-disable-next-line no-mixed-operators
-
-var random = function random(min, max) {
-  return Math.floor(Math.random() * (max - min + 1) + min);
-}; // eslint-disable-next-line no-unused-vars
-
-
-var sparklineChart1 = new Chart(document.getElementById('sparkline-chart-1'), {
-  type: 'bar',
-  data: {
-    labels: ['M', 'T', 'W', 'T', 'F', 'S', 'S', 'M', 'T', 'W', 'T', 'F', 'S', 'S', 'M'],
-    datasets: [{
-      backgroundColor: coreui.Utils.getStyle('--cui-primary'),
-      borderColor: 'transparent',
-      borderWidth: 1,
-      data: [random(40, 100), random(40, 100), random(40, 100), random(40, 100), random(40, 100), random(40, 100), random(40, 100), random(40, 100), random(40, 100), random(40, 100), random(40, 100), random(40, 100), random(40, 100), random(40, 100), random(40, 100)]
-    }]
-  },
-  options: {
-    maintainAspectRatio: false,
-    plugins: {
-      legend: {
-        display: false
-      }
-    },
-    scales: {
-      x: {
-        display: false
-      },
-      y: {
-        display: false
-      }
-    }
-  }
-}); // eslint-disable-next-line no-unused-vars
-
-var sparklineChart2 = new Chart(document.getElementById('sparkline-chart-2'), {
-  type: 'bar',
-  data: {
-    labels: ['M', 'T', 'W', 'T', 'F', 'S', 'S', 'M', 'T', 'W', 'T', 'F', 'S', 'S', 'M'],
-    datasets: [{
-      backgroundColor: coreui.Utils.getStyle('--cui-warning'),
-      borderColor: 'transparent',
-      borderWidth: 1,
-      data: [random(40, 100), random(40, 100), random(40, 100), random(40, 100), random(40, 100), random(40, 100), random(40, 100), random(40, 100), random(40, 100), random(40, 100), random(40, 100), random(40, 100), random(40, 100), random(40, 100), random(40, 100)]
-    }]
-  },
-  options: {
-    maintainAspectRatio: false,
-    plugins: {
-      legend: {
-        display: false
-      }
-    },
-    scales: {
-      x: {
-        display: false
-      },
-      y: {
-        display: false
-      }
-    }
-  }
-}); // eslint-disable-next-line no-unused-vars
-
-var sparklineChart3 = new Chart(document.getElementById('sparkline-chart-3'), {
-  type: 'bar',
-  data: {
-    labels: ['M', 'T', 'W', 'T', 'F', 'S', 'S', 'M', 'T', 'W', 'T', 'F', 'S', 'S', 'M'],
-    datasets: [{
-      backgroundColor: coreui.Utils.getStyle('--cui-success'),
-      borderColor: 'transparent',
-      borderWidth: 1,
-      data: [random(40, 100), random(40, 100), random(40, 100), random(40, 100), random(40, 100), random(40, 100), random(40, 100), random(40, 100), random(40, 100), random(40, 100), random(40, 100), random(40, 100), random(40, 100), random(40, 100), random(40, 100)]
-    }]
-  },
-  options: {
-    maintainAspectRatio: false,
-    plugins: {
-      legend: {
-        display: false
-      }
-    },
-    scales: {
-      x: {
-        display: false
-      },
-      y: {
-        display: false
-      }
-    }
-  }
-}); // eslint-disable-next-line no-unused-vars
-
-var sparklineChart4 = new Chart(document.getElementById('sparkline-chart-4'), {
-  type: 'line',
-  data: {
-    labels: ['M', 'T', 'W', 'T', 'F', 'S', 'S'],
-    datasets: [{
-      backgroundColor: 'transparent',
-      borderColor: coreui.Utils.getStyle('--cui-info'),
-      borderWidth: 2,
-      data: [random(40, 100), random(40, 100), random(40, 100), random(40, 100), random(40, 100), random(40, 100), random(40, 100)]
-    }]
-  },
-  options: {
-    maintainAspectRatio: false,
-    elements: {
-      line: {
-        tension: 0.4
-      },
-      point: {
-        radius: 0
-      }
-    },
-    plugins: {
-      legend: {
-        display: false
-      }
-    },
-    scales: {
-      x: {
-        display: false
-      },
-      y: {
-        display: false
-      }
-    }
-  }
-}); // eslint-disable-next-line no-unused-vars
-
-var sparklineChart5 = new Chart(document.getElementById('sparkline-chart-5'), {
-  type: 'line',
-  data: {
-    labels: ['M', 'T', 'W', 'T', 'F', 'S', 'S'],
-    datasets: [{
-      backgroundColor: 'transparent',
-      borderColor: coreui.Utils.getStyle('--cui-success'),
-      borderWidth: 2,
-      data: [random(40, 100), random(40, 100), random(40, 100), random(40, 100), random(40, 100), random(40, 100), random(40, 100)]
-    }]
-  },
-  options: {
-    maintainAspectRatio: false,
-    elements: {
-      line: {
-        tension: 0.4
-      },
-      point: {
-        radius: 0
-      }
-    },
-    plugins: {
-      legend: {
-        display: false
-      }
-    },
-    scales: {
-      x: {
-        display: false
-      },
-      y: {
-        display: false
-      }
-    }
-  }
-}); // eslint-disable-next-line no-unused-vars
-
-var sparklineChart6 = new Chart(document.getElementById('sparkline-chart-6'), {
-  type: 'line',
-  data: {
-    labels: ['M', 'T', 'W', 'T', 'F', 'S', 'S'],
-    datasets: [{
-      backgroundColor: 'transparent',
-      borderColor: coreui.Utils.getStyle('--cui-danger'),
-      borderWidth: 2,
-      data: [random(40, 100), random(40, 100), random(40, 100), random(40, 100), random(40, 100), random(40, 100), random(40, 100)]
-    }]
-  },
-  options: {
-    maintainAspectRatio: false,
-    elements: {
-      line: {
-        tension: 0.4
-      },
-      point: {
-        radius: 0
-      }
-    },
-    plugins: {
-      legend: {
-        display: false
-      }
-    },
-    scales: {
-      x: {
-        display: false
-      },
-      y: {
-        display: false
-      }
-    }
-  }
-});
-var brandBoxChartLabels = ['January', 'February', 'March', 'April', 'May', 'June', 'July'];
-var brandBoxChartOptions = {
-  elements: {
-    line: {
-      tension: 0.4
-    },
-    point: {
-      radius: 0,
-      hitRadius: 10,
-      hoverRadius: 4,
-      hoverBorderWidth: 3
-    }
-  },
-  maintainAspectRatio: false,
-  plugins: {
-    legend: {
-      display: false
-    }
-  },
-  scales: {
-    x: {
-      display: false
-    },
-    y: {
-      display: false
-    }
-  }
-}; // eslint-disable-next-line no-unused-vars
-
-var brandBoxChart1 = new Chart(document.getElementById('social-box-chart-1'), {
-  type: 'line',
-  data: {
-    labels: brandBoxChartLabels,
-    datasets: [{
-      backgroundColor: 'rgba(255,255,255,.1)',
-      borderColor: 'rgba(255,255,255,.55)',
-      pointHoverBackgroundColor: '#fff',
-      borderWidth: 2,
-      data: [65, 59, 84, 84, 51, 55, 40],
-      fill: true
-    }]
-  },
-  options: brandBoxChartOptions
-}); // eslint-disable-next-line no-unused-vars
-
-var brandBoxChart2 = new Chart(document.getElementById('social-box-chart-2'), {
-  type: 'line',
-  data: {
-    labels: brandBoxChartLabels,
-    datasets: [{
-      backgroundColor: 'rgba(255,255,255,.1)',
-      borderColor: 'rgba(255,255,255,.55)',
-      pointHoverBackgroundColor: '#fff',
-      borderWidth: 2,
-      data: [1, 13, 9, 17, 34, 41, 38],
-      fill: true
-    }]
-  },
-  options: brandBoxChartOptions
-}); // eslint-disable-next-line no-unused-vars
-
-var brandBoxChart3 = new Chart(document.getElementById('social-box-chart-3'), {
-  type: 'line',
-  data: {
-    labels: brandBoxChartLabels,
-    datasets: [{
-      backgroundColor: 'rgba(255,255,255,.1)',
-      borderColor: 'rgba(255,255,255,.55)',
-      pointHoverBackgroundColor: '#fff',
-      borderWidth: 2,
-      data: [78, 81, 80, 45, 34, 12, 40],
-      fill: true
-    }]
-  },
-  options: brandBoxChartOptions
 });
 
 /***/ }),

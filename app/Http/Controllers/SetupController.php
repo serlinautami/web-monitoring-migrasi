@@ -17,7 +17,7 @@ class SetupController extends Controller
         if($setup && $setup->status == 1) {
             return redirect('/');   
         }
-        return view('setup');
+        return view('pages.setup.index');
     }
 
     public function post(Request $request) {

@@ -3,11 +3,11 @@
         <button class="header-toggler px-md-0 me-md-3" type="button"
             onclick="coreui.Sidebar.getInstance(document.querySelector('#sidebar')).toggle()">
             <svg class="icon icon-lg">
-                <use xlink:href="icons/sprites/free.svg#cil-menu"></use>
+                <use xlink:href="/icons/sprites/free.svg#cil-menu"></use>
             </svg>
         </button><a class="header-brand d-md-none" href="#">
             <svg width="118" height="46" alt="CoreUI Logo">
-                <use xlink:href="assets/brand/coreui.svg#full"></use>
+                <use xlink:href="/assets/brand/coreui.svg#full"></use>
             </svg></a>
 
         <ul class="header-nav ms-3">
@@ -18,18 +18,18 @@
                 </a>
                 <div class="dropdown-menu dropdown-menu-end pt-0">
                     <div class="dropdown-header bg-light py-2">
-                        <div class="fw-semibold">Account</div>
+                        <div class="fw-semibold">{{ Auth::user()->name ?? '' }}</div>
                     </div>
                     <a class="dropdown-item" href="#">
                         <svg class="icon me-2">
-                            <use xlink:href="icons/sprites/free.svg#cil-user"></use>
+                            <use xlink:href="/icons/sprites/free.svg#cil-user"></use>
                         </svg>
                         Profile
                     </a>
 
                     <a class="dropdown-item" href="/logout">
                         <svg class="icon me-2">
-                            <use xlink:href="icons/sprites/free.svg#cil-account-logout"></use>
+                            <use xlink:href="/icons/sprites/free.svg#cil-account-logout"></use>
                         </svg>
                         Logout
                     </a>
@@ -38,14 +38,5 @@
         </ul>
     </div>
     <div class="header-divider"></div>
-    <div class="container-fluid">
-        <nav aria-label="breadcrumb">
-            <ol class="breadcrumb my-0 ms-2">
-                <li class="breadcrumb-item">
-                    <!-- if breadcrumb is single--><span>Home</span>
-                </li>
-                <li class="breadcrumb-item active"><span>Dashboard</span></li>
-            </ol>
-        </nav>
-    </div>
+    @yield('breadcrumb')
 </header>
