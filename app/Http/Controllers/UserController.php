@@ -128,7 +128,7 @@ class UserController extends Controller
             return back()->withErrors($validator)->withInput();
         }
 
-        $existingEmail = User::whereIn('status', ['active', 'nonactive'])->where('email', $request->email);
+        $existingEmail = User::whereIn('status', ['active', 'nonactive'])->where('email', $request->email)->first();
         if($existingEmail && $existingEmail->email != $user->email) {
             return back()->withErrors(['message' => 'Email ini sudah terdaftar'])->withInput();
         }

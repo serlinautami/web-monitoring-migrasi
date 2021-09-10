@@ -24,6 +24,18 @@
                     <div class="card-header">
                         <h5><strong>Detail Package</strong></h5>
                     </div>
+                    <div class="card-body">
+                        <div class="container p-0 border border-2">
+                            <div class="row g-0">
+                                <div class="col-12 col-sm-12 col-md-4 col-lg-3 p-2 border-end border-end-2 bg-light">
+                                    <p class="font-weight-bold m-0">IP Server</p>
+                                </div>
+                                <div class="col-12 col-sm-12 col-md-8 col-lg-9 p-2">
+                                    <p class="font-weight-bold m-0">{{ $package->ip_server }}</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
