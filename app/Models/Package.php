@@ -1,0 +1,31 @@
+<?php
+
+namespace App\Models;
+
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
+
+class Package extends Model
+{
+    use HasFactory;
+
+    protected $table = 'packages';
+
+    protected $fillable = [
+        'id',
+        'ip_server',
+        'status_migrasi',
+        'status_upload',
+        'status_running',
+        'jumlah_job_ssis',
+        'staging',
+        'total_connect',
+        'keterangan'
+    ];
+
+    protected $casts = [
+        'id' => 'string'
+    ];
+    
+    public $incrementing = false;
+}

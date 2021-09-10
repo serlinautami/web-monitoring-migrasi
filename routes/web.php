@@ -5,6 +5,7 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\SetupController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\PackageController;
 
 
 /*
@@ -33,3 +34,11 @@ Route::get('/user/edit/{id}', [UserController::class, 'edit_user_page'])->name('
 Route::post('/user/edit/{id}', [UserController::class, 'edit_user']);
 Route::delete('/user/delete/{id}', [UserController::class, 'delete_user']);
 Route::get('/user/{id}', [UserController::class, 'get_user']);
+
+Route::get('/package', [PackageController::class, 'page'])->name('package');
+Route::get('/package/add', [PackageController::class, 'add_package_page'])->name('add_package');
+Route::get('/package/edit/{id}', [PackageController::class, 'edit_package_page'])->name('edit_package');
+Route::post('/package/add', [PackageController::class, 'add_package']);
+Route::post('/package/edit/{id}', [PackageController::class, 'edit_package']);
+Route::get('/package/delete/{id}', [PackageController::class, 'delete_package']);
+Route::get('/package/{id}', [PackageController::class, 'detail_package_page']);

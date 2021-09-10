@@ -39,7 +39,7 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @if ($users)
+                                    @if ($users && count($users) > 0)
                                         @foreach ($users as $user)
                                             <tr>
                                                 <td>{{ $user->name }}</td>

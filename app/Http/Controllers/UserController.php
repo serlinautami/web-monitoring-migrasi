@@ -28,9 +28,7 @@ class UserController extends Controller
     public function edit_user_page($id) {
         $user = User::whereIn('status', ['active', 'nonactive'])->where('id', $id)->first();
         if(!$user) {
-            return back()->withErrors([
-                'message' => 'User tidak ditemukan'
-            ]);
+            return abort(404);
         }
         return view('pages.user.form', [
             'user' => $user
@@ -131,7 +129,7 @@ class UserController extends Controller
         }
 
         $existingEmail = User::whereIn('status', ['active', 'nonactive'])->where('email', $request->email);
-        if($existingEmail && $existingEmail != $user->email) {
+        if($existingEmail && $existingEmail->email != $user->email) {
             return back()->withErrors(['message' => 'Email ini sudah terdaftar'])->withInput();
         }
 
