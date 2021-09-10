@@ -83,8 +83,25 @@ class PackageController extends Controller
             return abort(404);
         }
 
+        $package->status_migrasi = $this->readStatus($package->status_migrasi);
+        $package->status_upload = $this->readStatus($package->status_upload);
+        $package->status_running = $this->readStatus($package->status_running);
+
+        if(!$package->staging == 'yes') {
+            $package->stagin = 'Ada 0000_staging';
+        } else if($package->staging == 'no') {
+            $package->staging = 'Tidak ada 0000_staging';
+        } else {
+            $package->staging = 'Tidak ada';
+        }
+
+        if(!$package->keterangan) {
+            $package->keterangan  = '-';
+        }
+
         return view('pages.package.detail.index', [
-            'package' => $package
+            'package' => $package,
+            'projects' => []
         ]);
     }
 
