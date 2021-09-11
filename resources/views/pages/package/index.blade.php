@@ -37,7 +37,7 @@
                                         <th style="min-width:150px">Status upload</th>
                                         <th style="min-width:150px">Status running</th>
                                         <th style="min-width:150px">Jumlah job SSIS</th>
-                                        <th style="min-width:200px">Staging</th>
+                                        <th style="min-width:200px">0000_staging?</th>
                                         <th style="min-width:200px">Total connect 40.160</th>
                                         <th style="min-width:300px">Keterangan</th>
                                         <th style="min-width:150px">Aksi</th>

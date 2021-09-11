@@ -14,7 +14,7 @@ class Project extends Model
     protected $fillable = [
         'id',
         'project_name',
-        'notes',
+        'keterangan',
         'staging',
         'status_upload',
         'status_running',
@@ -27,4 +27,8 @@ class Project extends Model
     ];
 
     public $incrementing = false;
+
+    public function jobs() {
+        return $this->hasMany(Job::class, 'project_id', 'id');
+    }
 }

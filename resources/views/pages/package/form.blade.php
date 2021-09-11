@@ -108,12 +108,12 @@
 
                                 <div class="col-12 col-sm-12 col-md-6">
                                     <div class="form-group mb-3">
-                                        <label class="form-label">Staging</label>
+                                        <label class="form-label">0000_staging ?</label>
                                         <select name="staging" class="form-select" placeholder="staging">
                                             <option {{ $package && $package->staging == 'no' ? 'selected' : '' }}
-                                                value="no">Tidak Ada 0000_staging</option>
+                                                value="no">Tidak Ada</option>
                                             <option {{ $package && $package->staging == 'yes' ? 'selected' : '' }}
-                                                value="yes">Ada 0000_staging</option>
+                                                value="yes">Ada</option>
                                         </select>
                                     </div>
                                 </div>

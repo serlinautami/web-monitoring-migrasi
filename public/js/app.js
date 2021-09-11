@@ -9646,7 +9646,6 @@ if (document.querySelector('#list-user')) {
     status.textContent = '';
   });
   var deleteBtn = modal.querySelector('.btn-delete');
-  var statusBtn = modal.querySelector('.btn-status');
   console.log('deleteBtn', deleteBtn);
 
   if (deleteBtn) {
@@ -9668,8 +9667,6 @@ if (document.querySelector('#list-user')) {
   }
 
   ;
-
-  if (statusBtn) {}
 }
 
 /***/ }),

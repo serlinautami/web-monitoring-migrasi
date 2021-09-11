@@ -41,9 +41,9 @@ class PackageController extends Controller
             $package->status_running = $this->readStatus($package->status_running);
 
             if(!$package->staging == 'yes') {
-                $package->stagin = 'Ada 0000_staging';
+                $package->stagin = 'Ada';
             } else if($package->staging == 'no') {
-                $package->staging = 'Tidak ada 0000_staging';
+                $package->staging = 'Tidak ada';
             } else {
                 $package->staging = 'Tidak ada';
             }

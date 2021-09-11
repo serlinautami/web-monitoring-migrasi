@@ -13,5 +13,10 @@ const mix = require('laravel-mix');
 
 mix.js('resources/js/app.js', 'public/js')
     .sass('resources/scss/app.scss', 'public/css', []);
+
+// react
+mix.js('resources/js/react/containers/project-form.jsx', 'public/js').react();
+
+// file
 // mix.copyDirectory('resources/assets', 'public/assets');
 // mix.copyDirectory('./node_modules/@coreui/icons', 'public/icons');

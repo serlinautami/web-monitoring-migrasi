@@ -43,6 +43,7 @@
     </div>
 
     @include('layouts.script')
+    @yield('additional-script')
 </body>
 
 </html>

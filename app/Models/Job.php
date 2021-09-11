@@ -24,4 +24,12 @@ class Job extends Model
     ];
 
     public $incrementing = false;
+
+    public function project() {
+        return $this->belongsTo(Project::class, 'project_id', 'id');
+    }
+
+    public function job_steps() {
+        return $this->hasMany(JobStep::class, 'job_id', 'id');
+    }
 }

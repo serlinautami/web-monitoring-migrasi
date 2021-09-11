@@ -59,7 +59,6 @@ if(document.querySelector('#list-user')) {
   })
 
   const deleteBtn = modal.querySelector('.btn-delete');
-  const statusBtn = modal.querySelector('.btn-status');
 
   console.log('deleteBtn', deleteBtn)
   if(deleteBtn){
@@ -77,6 +76,4 @@ if(document.querySelector('#list-user')) {
       }
     }
   };
-
-  if(statusBtn){}
 }
