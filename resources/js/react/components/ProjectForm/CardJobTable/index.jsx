@@ -1,6 +1,6 @@
 import React from 'react';
 
-function CardJobTable({ jobs, onAdd, onEdit, onDelete, onDetail }) {
+function CardJobTable({ jobs, onAdd, onEdit, onDelete, onDetail, disabled }) {
   return (
     <div className="card mb-3">
       <div className="card-header">
@@ -13,6 +13,7 @@ function CardJobTable({ jobs, onAdd, onEdit, onDelete, onDetail }) {
           <button
             onClick={onAdd}
             type="button"
+            disabled={disabled}
             className="btn btn-primary btn-sm js-add-job-btn"
           >
             Tambah Job
@@ -38,18 +39,21 @@ function CardJobTable({ jobs, onAdd, onEdit, onDelete, onDetail }) {
                         <td className="text-center">
                           <button
                             onClick={() => onEdit(job)}
+                            disabled={disabled}
                             className="btn btn-sm btn-success me-1"
                           >
                             Edit
                           </button>
                           <button
                             onClick={() => onDelete(job)}
+                            disabled={disabled}
                             className="btn btn-sm btn-danger me-1"
                           >
                             Hapus
                           </button>
                           <button
                             onClick={() => onDetail(job)}
+                            disabled={disabled}
                             className="btn btn-sm btn-primary"
                           >
                             Detail

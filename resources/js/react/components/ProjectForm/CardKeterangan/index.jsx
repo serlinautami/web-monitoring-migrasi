@@ -1,7 +1,7 @@
 import React from 'react';
 
 
-function CardKeterangan({ onChange }) {
+function CardKeterangan({ form, onChange, disabled }) {
   return (
     <div className="card mb-3">
       <div className="card-header">
@@ -17,6 +17,8 @@ function CardKeterangan({ onChange }) {
             className="form-control"
             placeholder="Tulis keterangan disini"
             rows="4"
+            disabled={disabled}
+            value={form?.keterangan}
           ></textarea>
         </div>
       </div>

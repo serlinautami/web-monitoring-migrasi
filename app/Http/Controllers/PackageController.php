@@ -10,27 +10,6 @@ use Illuminate\Support\Str;
 
 class PackageController extends Controller
 {
-    //
-    public function readStatus($status) {
-        switch($status){
-            case 'onprogress':
-                return 'On Progress';
-            case 'done':
-                return 'Done';
-            case 'blocked':
-                return 'Blocked';
-            case 'done-upload':
-                return 'Sudah Upload';
-            case 'job-disable':
-                return 'Job Disable';
-            case 'done-deploy':
-                return 'Sudah Deploy';
-            case 'rollback':
-                return 'Rollback';
-            default:
-                return 'Tidak ada';
-        }
-    }
 
     public function page() {
         $packages = Package::paginate(10);

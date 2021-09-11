@@ -1,6 +1,6 @@
 import React from "react";
 
-function CardProjectName({ onChange, form }) {
+function CardProjectName({ onChange, form, disabled }) {
   return (
     <div className="card mb-3">
       <div className="card-header">
@@ -17,6 +17,7 @@ function CardProjectName({ onChange, form }) {
             placeholder="Nama Project"
             onChange={onChange}
             value={form.project_name}
+            disabled={disabled}
           />
         </div>
       </div>

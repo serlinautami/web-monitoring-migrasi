@@ -1,6 +1,6 @@
 import React from 'react';
 
-function CardStatus({ onChange, form }) {
+function CardStatus({ onChange, form, disabled }) {
   console.log('asdasdasd')
   let statusMigrasi = [
     { value: "", label: "Tidak Ada" },
@@ -51,6 +51,7 @@ function CardStatus({ onChange, form }) {
             name="status_migrasi"
             className="form-select"
             onChange={onChange}
+            disabled={disabled}
           >
             {statusMigrasi.map(function (option, index) {
               return (
@@ -69,6 +70,8 @@ function CardStatus({ onChange, form }) {
             className="form-select"
             onChange={onChange}
             value={form.staging}
+            disabled={disabled}
+
           >
             {statusStaging.map(function (option, index) {
               return (
@@ -82,7 +85,13 @@ function CardStatus({ onChange, form }) {
 
         <div className="form-group mb-3">
           <label className="form-label">Status upload</label>
-          <select name="status_upload" className="form-select" onChange={onChange} value={form.status_upload}>
+          <select
+            name="status_upload"
+            className="form-select"
+            disabled={disabled}
+            onChange={onChange}
+            value={form.status_upload}
+          >
             {statusUpload.map(function (option, index) {
               return (
                 <option key={index} value={option.value}>
@@ -100,6 +109,7 @@ function CardStatus({ onChange, form }) {
             className="form-select"
             onChange={onChange}
             value={form.status_running}
+            disabled={disabled}
           >
             {statusRunning.map(function (option, index) {
               return (
@@ -118,6 +128,7 @@ function CardStatus({ onChange, form }) {
             className="form-select"
             onChange={onChange}
             value={form.status_import}
+            disabled={disabled}
           >
             {statusImport.map(function (option, index) {
               return (

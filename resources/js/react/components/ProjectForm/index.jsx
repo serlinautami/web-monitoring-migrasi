@@ -9,7 +9,8 @@ import CardKeterangan from './CardKeterangan';
 import ModalDetailJob from './ModalDetailJob';
 import ModalFormJob from './ModalFormJob';
 import ModalFormJobStep from './ModalFormJobStep';
-
+import Alert from '../Alert';
+import axios from 'axios';
 
 // set form
 const initialFormProject = {
@@ -38,6 +39,12 @@ const initialFormJobStep = {
   keterangan: "",
 };
 
+const initialAlert = {
+  show: false,
+  message: '',
+  type: 'primary'
+}
+
 let modalObject = {
   modalFormJob: null,
   modalFormJobStep: null,
@@ -48,12 +55,15 @@ function ProjectForm({ packageId }) {
 
 
   const [loading, setLoading] = useState(false);
+  const [alert, setAlert] = useState(initialAlert);
   const [formProject, setFormProject] = useState(initialFormProject);
   const [formJob, setFormJob] = useState(initialFormJob);
   const [formJobStep, setFormJobStep] = useState(initialFormJobStep);
 
   const [selectedJob, setSelectedJob] = useState(null);
   const detailJob = formProject.jobs.filter(v => v?.id === selectedJob)[0];
+
+  const inputDisabled = loading;
 
 
   console.log('formProject', formProject)
@@ -265,6 +275,41 @@ function ProjectForm({ packageId }) {
     onCloseFormJob();
   }
 
+  function saveProjectData(data) {
+    console.log('request', data);
+    setLoading(true);
+    axios({
+      url: `/package/${packageId}/project/add`,
+      method: 'POST',
+      data,
+      headers: {
+        "Content-Type": "application/json"
+      }
+    }).then(function (response) {
+      console.log(response);
+      return response.data;
+    }).then(function (result) {
+      const data = result?.data;
+      setLoading(false);
+      setAlert({
+        show: true,
+        message: (
+          <div>Berhasil menyimpan data project, untuk melihat hasilnya <a href={`/package/${packageId}/project/${data?.project_id}`}>klik di sini</a></div>
+        ),
+        type: 'success'
+      });
+      setFormProject(initialFormProject);
+    }).catch(function (err) {
+      console.log('err', err)
+      setLoading(false);
+      setAlert({
+        show: true,
+        message: err?.message || 'Terjadi Kesalahan Sistem',
+        type: 'danger'
+      });
+    });
+  }
+
   function onSubmitForm(e) {
     e?.preventDefault?.();
     const form = { ...formProject }
@@ -277,8 +322,12 @@ function ProjectForm({ packageId }) {
       return window.alert('Job harus diisi!');
     }
 
-    console.log('simpan', form);
+    saveProjectData(form);
 
+  }
+
+  function resetAlert() {
+    setAlert(initialAlert);
   }
 
 
@@ -287,17 +336,22 @@ function ProjectForm({ packageId }) {
 
   return (
     <React.Fragment>
+      {alert.show && (
+        <Alert message={alert.message} type={alert.type} onClose={resetAlert} />
+      )}
       <div className="container-lg">
         <div className="row">
           <div className="col-12 col-sm-12 col-md-12 col-lg-4">
             <CardProjectName
               onChange={onChangeFormProject}
               form={formProject}
+              disabled={inputDisabled}
             />
 
             <CardStatus
               onChange={onChangeFormProject}
               form={formProject}
+              disabled={inputDisabled}
             />
           </div>
 
@@ -308,16 +362,19 @@ function ProjectForm({ packageId }) {
               onEdit={onEditJob}
               onDelete={onDeleteJob}
               onDetail={onDetailJob}
+              disabled={inputDisabled}
             />
             <CardPathSSIS
               onChange={onChangeFormProject}
               form={formProject}
+              disabled={inputDisabled}
             />
             <CardKeterangan
               onChange={onChangeFormProject}
               form={formProject}
+              disabled={inputDisabled}
             />
-            <CardSimpan onSubmit={onSubmitForm} />
+            <CardSimpan onSubmit={onSubmitForm} disabled={inputDisabled} loading={loading} />
           </div>
         </div>
       </div>

@@ -1,7 +1,7 @@
 import React from 'react';
 
 
-function CardPathSSIS({ onChange, form }) {
+function CardPathSSIS({ onChange, form, disabled }) {
   return (
     <div className="card mb-3">
       <div className="card-header">
@@ -18,6 +18,7 @@ function CardPathSSIS({ onChange, form }) {
             placeholder="eg: /ssis/path"
             value={form.original_path}
             onChange={onChange}
+            disabled={disabled}
           />
         </div>
       </div>

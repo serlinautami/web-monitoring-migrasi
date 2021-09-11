@@ -20,7 +20,8 @@ class Package extends Model
         'jumlah_job_ssis',
         'staging',
         'total_connect',
-        'keterangan'
+        'keterangan',
+        'package_id'
     ];
 
     protected $casts = [
@@ -28,4 +29,8 @@ class Package extends Model
     ];
     
     public $incrementing = false;
+
+    public function projects() {
+        return $this->hasMany(Project::class, 'package_id', 'id');
+    }
 }

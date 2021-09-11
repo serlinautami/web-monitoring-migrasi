@@ -18,7 +18,8 @@ class Project extends Model
         'staging',
         'status_upload',
         'status_running',
-        'status_import'
+        'status_import',
+        'package_id'
     ];
 
     
@@ -27,6 +28,10 @@ class Project extends Model
     ];
 
     public $incrementing = false;
+
+    public function package(){
+        return $this->belongsTo(Package::class, 'package_id', 'id');
+    }
 
     public function jobs() {
         return $this->hasMany(Job::class, 'project_id', 'id');

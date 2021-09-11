@@ -1,6 +1,6 @@
 import React from 'react';
 
-function CardSimpan({ onSubmit }) {
+function CardSimpan({ onSubmit, loading, disabled }) {
   return (
     <div className="card mb-3">
       <div className="card-body d-flex justify-content-end">
@@ -8,8 +8,9 @@ function CardSimpan({ onSubmit }) {
           onClick={onSubmit}
           className="btn btn-primary btn-sm js-simpan-btn"
           type="button"
+          disabled={disabled}
         >
-          Simpan
+          {loading ? 'Tunggu Sebentar...' : 'Simpan'}
         </button>
       </div>
     </div>
