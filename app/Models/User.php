@@ -40,17 +40,13 @@ class User extends Authenticatable
         'remember_token',
     ];
 
-    // /**
-    //  * The attributes that should be cast.
-    //  *
-    //  * @var array
-    //  */
-    // protected $casts = [
-    //     'email_verified_at' => 'datetime',
-    // ];
-
     protected $casts = [
         'id' => 'string'
     ];
     public $incrementing = false;
+
+
+    public function histories() {
+        return $this->hasMany(History::class, 'user_id', 'id');
+    }
 }

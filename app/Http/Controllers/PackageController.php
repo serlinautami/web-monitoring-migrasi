@@ -7,6 +7,9 @@ use Illuminate\Support\Facades\Validator;
 use App\Models\Package;
 use App\Models\Project;
 use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Auth;
+use App\Models\History;
+
 
 
 class PackageController extends Controller
@@ -143,6 +146,14 @@ class PackageController extends Controller
             ])->withInput();
         }
 
+
+        $auth_user = Auth::user();
+        
+        History::create([
+            'user_id' => $auth_user->id,
+            'description' => "Menambah package $package->ip_server",
+        ]);
+
         return redirect('/package')->with('success', 'Berhasil menyimpan data package');
     }
 
@@ -183,6 +194,13 @@ class PackageController extends Controller
             'keterangan' => $request->keterangan,
         ]);
 
+        $auth_user = Auth::user();
+        
+        History::create([
+            'user_id' => $auth_user->id,
+            'description' => "Mengedit package $package->ip_server",
+        ]);
+
         return redirect('/package')->with('success', 'Berhasil memperbarui data package');
     }
 
@@ -199,6 +217,12 @@ class PackageController extends Controller
                 'message' => "Package $package->name tidak bisa dihapus karena memiliki project, untuk menghapus item package hapus terlebih dahulu project-project yang terkait dengan package ini"
             ]);
         }
+
+        $auth_user = Auth::user();
+        History::create([
+            'user_id' => $auth_user->id,
+            'description' => "Menghapus package $package->ip_server",
+        ]);
         
         $package->delete();
 

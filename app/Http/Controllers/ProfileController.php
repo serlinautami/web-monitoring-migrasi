@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
 use App\Models\User;
 use Illuminate\Support\Facades\Validator;
+use App\Models\History;
 
 
 class ProfileController extends Controller
@@ -69,9 +70,19 @@ class ProfileController extends Controller
             }
 
             $user->password = Hash::make($request->password);
+
+            History::create([
+                'user_id' => $user->id,
+                'description' => 'Mengubah password'
+            ]);
         }
         
         $user->save();
+
+        History::create([
+            'user_id' => $user->id,
+            'description' => 'Mengedit profile'
+        ]);
 
         return back()->with('success', 'Berhasil memperbarui profile');
     }   

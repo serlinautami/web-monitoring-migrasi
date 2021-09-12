@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Auth;
 use Carbon\Carbon;
+use App\Models\History;
 
 
 class ProjectController extends Controller
@@ -147,6 +148,13 @@ class ProjectController extends Controller
                 JobStep::insert($job_steps);
             }
         }
+
+        $auth_user = Auth::user();
+
+        History::create([
+            'user_id' => $auth_user->id,
+            'description' => "Menambah project $project->project_name pada $package->ip_server"
+        ]);
 
         return response()->json([
             'status' => 1,
@@ -305,6 +313,13 @@ class ProjectController extends Controller
             }
         }
 
+        $auth_user = Auth::user();
+
+        History::create([
+            'user_id' => $auth_user->id,
+            'description' => "Mengedit project $project->project_name pada $package->ip_server"
+        ]);
+
         return response()->json([
             'status' => 1,
             'message' => 'Berhasil menyimpan data',
@@ -408,6 +423,11 @@ class ProjectController extends Controller
             ], 404);
         }
 
+        $auth_user = Auth::user();
+        History::create([
+            'user_id' => $auth_user->id,
+            'description' => "Menghapus Project $project->project_name pada $package->ip_server"
+        ]);
 
         $isDelete = $project->delete();
         

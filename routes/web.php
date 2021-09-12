@@ -8,6 +8,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\PackageController;
 use App\Http\Controllers\ProjectController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\HistoryController;
 
 
 /*
@@ -64,3 +65,7 @@ Route::delete('/package/{packageId}/project/delete/{id}', [ProjectController::cl
 // Profile
 Route::get('/profile', [ProfileController::class, 'profile_page'])->name('profile_page')->middleware('auth');
 Route::post('/profile', [ProfileController::class, 'edit_profile'])->middleware('auth');
+
+
+// history routes
+Route::get('/history', [HistoryController::class, 'history_page'])->name('history_page')->middleware('auth');

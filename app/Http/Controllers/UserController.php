@@ -8,6 +8,7 @@ use App\Models\User;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Auth;
+use App\Models\History;
 
 
 
@@ -86,6 +87,13 @@ class UserController extends Controller
             ])->withInput();
         }
 
+        $auth_user = Auth::user();
+
+        History::create([
+            'user_id' => $auth_user->id,
+            'description' => "Menambahkan user $user->email"
+        ]);
+
         return redirect('/user')->with('success', 'Berhasil menyimpan data user');
     }
 
@@ -102,6 +110,14 @@ class UserController extends Controller
 
         $user->status = 'deleted';
         $user->save();
+
+
+        $auth_user = Auth::user();
+
+        History::create([
+            'user_id' => $auth_user->id,
+            'description' => "Menghapus user $user->email"
+        ]);
 
         return response()->json([
             'status' => 1,
@@ -139,8 +155,14 @@ class UserController extends Controller
         $user->dob = $request->dob;
         $user->status = $request->status;
         $user->role = $request->role;
-
         $user->save();
+
+        $auth_user = Auth::user();
+
+        History::create([
+            'user_id' => $auth_user->id,
+            'description' => "Mengedit user $user->email"
+        ]);
 
         return redirect('/user')->with('success', 'Berhasil memperbarui data user');
     }

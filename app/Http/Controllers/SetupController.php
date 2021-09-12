@@ -8,6 +8,7 @@ use App\Models\SetupApp;
 use Illuminate\Support\Facades\Validator;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
+use App\Models\History;
 
 class SetupController extends Controller
 {
@@ -61,6 +62,17 @@ class SetupController extends Controller
             $setup->status = 1;
             $setup-save();
         }
+
+
+        History::create([
+            'user_id' => $userCreated->id,
+            'description' => 'Akun Super Admin dibuat'
+        ]);
+
+        History::create([
+            'user_id' => $userCreated->id,
+            'description' => 'Mensetup Aplikasi'
+        ]);
 
         return redirect('/');
     }

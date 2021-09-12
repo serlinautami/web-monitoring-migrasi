@@ -6,6 +6,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Auth;
+use App\Models\History;
 
 
 class AuthController extends Controller
@@ -45,10 +46,26 @@ class AuthController extends Controller
         }
 
         $request->session()->regenerate();
+
+
+        $user = Auth::user();
+
+        History::create([
+            'user_id' => $user->id,
+            'description' => 'Login'
+        ]);
+
         return redirect()->intended('/');
     }
 
     function logout(Request $request) {
+        $user = Auth::user();
+
+        History::create([
+            'user_id' => $user->id,
+            'description' => 'Logout'
+        ]);
+
         Auth::logout();
         $request->session()->invalidate();
         $request->session()->regenerateToken();
