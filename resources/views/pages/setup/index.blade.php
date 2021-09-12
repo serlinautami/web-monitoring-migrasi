@@ -1,6 +1,6 @@
 @extends('layouts.authcontainer')
 @section('title')
-    Login
+    Setup - Web Manajemen Migrasi BRI
 @stop
 @section('content')
     <div class="container">

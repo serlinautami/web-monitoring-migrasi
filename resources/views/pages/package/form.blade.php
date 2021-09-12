@@ -23,6 +23,19 @@
     </div>
 @stop
 
+@php
+$isCanInput = false;
+$disabled = '';
+if (Auth::user()->role == 'super-admin' || Auth::user()->role == 'contributor') {
+    $isCanInput = true;
+}
+
+if (!$isCanInput) {
+    $disabled = 'disabled';
+}
+
+@endphp
+
 
 @section('content')
     <div class="container-lg">
@@ -44,10 +57,11 @@
                                             required />
                                     </div>
                                 </div>
+
                                 <div class="col-12 col-sm-12 col-md-6">
                                     <div class="form-group mb-3">
                                         <label class="form-label">Status migrasi</label>
-                                        <select name="status_migrasi" class="form-select">
+                                        <select {{ $disabled }} name="status_migrasi" class="form-select">
                                             <option value="">Tidak Ada</option>
                                             <option
                                                 {{ $package && $package->status_migrasi == 'onprogress' ? 'selected' : '' }}
@@ -63,7 +77,8 @@
                                 <div class="col-12 col-sm-12 col-md-6">
                                     <div class="form-group mb-3">
                                         <label class="form-label">Status upload</label>
-                                        <select name="status_upload" class="form-select" placeholder="status upload">
+                                        <select {{ $disabled }} name="status_upload" class="form-select"
+                                            placeholder="status upload">
                                             <option value="">Tidak Ada</option>
                                             <option
                                                 {{ $package && $package->status_upload == 'onprogress' ? 'selected' : '' }}
@@ -90,7 +105,8 @@
                                 <div class="col-12 col-sm-12 col-md-6">
                                     <div class="form-group mb-3">
                                         <label class="form-label">Status running</label>
-                                        <select name="status_running" class="form-select" placeholder="status running">
+                                        <select {{ $disabled }} name="status_running" class="form-select"
+                                            placeholder="status running">
                                             <option value="">Tidak Ada</option>
                                             <option
                                                 {{ $package && $package->status_running == 'running' ? 'selected' : '' }}
@@ -108,7 +124,8 @@
                                 <div class="col-12 col-sm-12 col-md-6">
                                     <div class="form-group mb-3">
                                         <label class="form-label">Jumlah job SSIS</label>
-                                        <input name="jumlah_job_ssis" type="number" class="form-control" placeholder="0"
+                                        <input {{ $disabled }} name="jumlah_job_ssis" type="number"
+                                            class="form-control" placeholder="0"
                                             value="{{ $package->jumlah_job_ssis ?? '' }}" />
                                     </div>
                                 </div>
@@ -116,7 +133,8 @@
                                 <div class="col-12 col-sm-12 col-md-6">
                                     <div class="form-group mb-3">
                                         <label class="form-label">0000_staging ?</label>
-                                        <select name="staging" class="form-select" placeholder="staging">
+                                        <select {{ $disabled }} name="staging" class="form-select"
+                                            placeholder="staging">
                                             <option {{ $package && $package->staging == 'no' ? 'selected' : '' }}
                                                 value="no">Tidak Ada</option>
                                             <option {{ $package && $package->staging == 'yes' ? 'selected' : '' }}
@@ -128,7 +146,8 @@
                                 <div class="col-12 col-sm-12 col-md-6">
                                     <div class="form-group mb-3">
                                         <label class="form-label">Total connect 40.160</label>
-                                        <input name="total_connect" type="number" class="form-control" placeholder="0"
+                                        <input {{ $disabled }} name="total_connect" type="number"
+                                            class="form-control" placeholder="0"
                                             value="{{ $package->total_connect ?? '' }}" />
                                     </div>
                                 </div>
@@ -136,7 +155,8 @@
                                 <div class="col-12">
                                     <div class="form-group mb-3">
                                         <label class="form-label">Keterangan</label>
-                                        <textarea name="keterangan" class="form-control" placeholder="tulis keterangan"
+                                        <textarea {{ $disabled }} name="keterangan" class="form-control"
+                                            placeholder="tulis keterangan"
                                             row="3">{{ $package->keterangan ?? '' }}</textarea>
                                     </div>
                                 </div>

@@ -19,11 +19,14 @@
                     <use xlink:href="/icons/sprites/free.svg#cil-history"></use>
                 </svg>History</a>
         </li>
-        <li class="nav-item"><a class="nav-link" href="/user">
-                <svg class="nav-icon">
-                    <use xlink:href="/icons/sprites/free.svg#cil-people"></use>
-                </svg>User</a>
-        </li>
+
+        @if (Auth::user()->role == 'super-admin' || Auth::user()->role == 'admin')
+            <li class="nav-item"><a class="nav-link" href="/user">
+                    <svg class="nav-icon">
+                        <use xlink:href="/icons/sprites/free.svg#cil-people"></use>
+                    </svg>User</a>
+            </li>
+        @endif
     </ul>
     <button class="sidebar-toggler" type="button" data-coreui-toggle="unfoldable"></button>
 </div>

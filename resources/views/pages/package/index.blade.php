@@ -9,8 +9,8 @@
                 <li class="breadcrumb-item">
                     <a href="/">Home</a>
                 </li>
-                <li class="breadcrumb-item">
-                    <a href="/package">Package</a>
+                <li class="breadcrumb-item active">
+                    <span>Package</span>
                 </li>
             </ol>
         </nav>
@@ -27,9 +27,11 @@
                         <h5><strong>Package List</strong></h5>
                     </div>
                     <div class="card-body">
-                        <div class="form-group mb-3">
-                            <a href="/package/add" class="btn btn-primary">Tambah</a>
-                        </div>
+                        @if (Auth::user()->role == 'super-admin' || Auth::user()->role == 'admin')
+                            <div class="form-group mb-3">
+                                <a href="/package/add" class="btn btn-primary">Tambah</a>
+                            </div>
+                        @endif
                         <div class="table-responsive">
                             <table class="table table-bordered table-striped table-hover">
                                 <thead>
@@ -58,8 +60,10 @@
                                                 <td>{{ $package->total_connect }}</td>
                                                 <td>{{ $package->keterangan }}</td>
                                                 <td>
-                                                    <a href="/package/edit/{{ $package->id }}"
-                                                        class="btn btn-primary btn-sm">Edit</a>
+                                                    @if (Auth::user()->role == 'super-admin' || Auth::user()->role == 'admin')
+                                                        <a href="/package/edit/{{ $package->id }}"
+                                                            class="btn btn-primary btn-sm">Edit</a>
+                                                    @endif
                                                     <a href="/package/{{ $package->id }}"
                                                         class="btn btn-primary btn-sm">Detail</a>
                                                 </td>

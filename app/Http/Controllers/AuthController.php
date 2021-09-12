@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Auth;
 use App\Models\History;
+use App\Models\User;
 
 
 class AuthController extends Controller
@@ -48,12 +49,14 @@ class AuthController extends Controller
         $request->session()->regenerate();
 
 
-        $user = Auth::user();
+        $user = User::whereIn('status', ['active', 'nonactive'])->where('email', $request->email)->first();
 
-        History::create([
-            'user_id' => $user->id,
-            'description' => 'Login'
-        ]);
+        if($user) {
+            History::create([
+                'user_id' => $user->id,
+                'description' => 'Login'
+            ]);
+        }
 
         return redirect()->intended('/');
     }

@@ -42,7 +42,7 @@ Route::post('/user/add', [UserController::class, 'add_user']);
 Route::get('/user/edit/{id}', [UserController::class, 'edit_user_page'])->name('edit_user')->middleware('auth');;
 Route::post('/user/edit/{id}', [UserController::class, 'edit_user']);
 Route::delete('/user/delete/{id}', [UserController::class, 'delete_user']);
-Route::get('/user/{id}', [UserController::class, 'get_user']);
+Route::get('/user/{id}', [UserController::class, 'detail_user_page'])->name('detail_user')->middleware('auth');
 
 
 // Package Page

@@ -16,6 +16,11 @@ class UserController extends Controller
 {
     //
     public function page() {
+
+        if(Auth::user()->role != 'super-admin' &&  Auth::user()->role != 'admin') {
+            return abort(404);
+        }
+
         $users = User::whereIn('status', ['active', 'nonactive'])->orderBy('name', 'asc')->paginate(10);
         return view('pages.user.index', [
             'users' => $users
@@ -34,6 +39,22 @@ class UserController extends Controller
         return view('pages.user.form', [
             'user' => $user
         ]);
+    }
+
+    public function detail_user_page($id) {
+        $user = User::whereIn('status', ['active', 'nonactive'])->where('id', $id)->first();
+
+        if(!$user) {
+            return abort(404);
+        }
+
+        $histories = History::where('user_id', $user->id)->orderBy('created_at','desc')->paginate(10);
+
+        return view('pages.user.detail.index', [
+            'user' => $user,
+            'histories' => $histories
+        ]);
+
     }
 
     public function get_user($id) {

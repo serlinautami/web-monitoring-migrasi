@@ -23,9 +23,11 @@
                         <h5><strong>List User</strong></h5>
                     </div>
                     <div class=" card-body">
-                        <div class="form-group mb-3">
-                            <a href="/user/add" class="btn btn-primary">Tambah</a>
-                        </div>
+                        @if (Auth::user()->role == 'super-admin')
+                            <div class="form-group mb-3">
+                                <a href="/user/add" class="btn btn-primary">Tambah</a>
+                            </div>
+                        @endif
                         <div>
                             <table id="user-table" class="table table-striped table-bordered">
                                 <thead>
@@ -47,10 +49,8 @@
                                                 <td data-status="{{ $user->status }}">{{ $user->status }}</td>
                                                 <td data-status="{{ $user->role }}">{{ $user->role }}</td>
                                                 <td width="50">
-                                                    <button data-user-id="{{ $user->id }}"
-                                                        class="btn btn-primary btn-sm btn-detail" type="button"
-                                                        data-coreui-toggle="modal"
-                                                        data-coreui-target="#modaldetail">Detail</button>
+                                                    <a href="/user/{{ $user->id }}" data-user-id="{{ $user->id }}"
+                                                        class="btn btn-primary btn-sm btn-detail">Detail</a>
                                                 </td>
                                             </tr>
                                         @endforeach
@@ -109,15 +109,18 @@
                                 <td>Status</td>
                                 <td data-detail-status></td>
                             </tr>
-                            <tr>
-                                <td>Aksi</td>
-                                <td>
-                                    <div>
-                                        <a href="/user/edit/" class="btn btn-sm btn-primary btn-edit">Edit</a>
-                                        <button type="button" class="btn btn-sm btn-danger btn-delete">Hapus</button>
-                                    </div>
-                                </td>
-                            </tr>
+                            @if (Auth::user()->role == 'super-admin')
+                                <tr>
+                                    <td>Aksi</td>
+                                    <td>
+                                        <div>
+                                            <a href="/user/edit/" class="btn btn-sm btn-primary btn-edit">Edit</a>
+                                            <button type="button" class="btn btn-sm btn-danger btn-delete">Hapus</button>
+                                        </div>
+                                    </td>
+                                </tr>
+                            @endif
+
                         </tbody>
                     </table>
                 </div>
