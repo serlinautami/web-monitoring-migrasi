@@ -47,7 +47,7 @@ function CardStatus({ onChange, form, disabled }) {
         <div className="form-group mb-3">
           <label className="form-label">Status Migrasi</label>
           <select
-            value={form.status_migrasi}
+            value={form.status_migrasi || ''}
             name="status_migrasi"
             className="form-select"
             onChange={onChange}
@@ -69,7 +69,7 @@ function CardStatus({ onChange, form, disabled }) {
             name="staging"
             className="form-select"
             onChange={onChange}
-            value={form.staging}
+            value={form.staging || ''}
             disabled={disabled}
 
           >
@@ -90,7 +90,7 @@ function CardStatus({ onChange, form, disabled }) {
             className="form-select"
             disabled={disabled}
             onChange={onChange}
-            value={form.status_upload}
+            value={form.status_upload || ''}
           >
             {statusUpload.map(function (option, index) {
               return (
@@ -108,7 +108,7 @@ function CardStatus({ onChange, form, disabled }) {
             name="status_running"
             className="form-select"
             onChange={onChange}
-            value={form.status_running}
+            value={form.status_running || ''}
             disabled={disabled}
           >
             {statusRunning.map(function (option, index) {
@@ -127,7 +127,7 @@ function CardStatus({ onChange, form, disabled }) {
             name="status_import"
             className="form-select"
             onChange={onChange}
-            value={form.status_import}
+            value={form.status_import || ''}
             disabled={disabled}
           >
             {statusImport.map(function (option, index) {

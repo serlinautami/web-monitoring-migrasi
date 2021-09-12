@@ -13,14 +13,14 @@
         <ul class="header-nav ms-3">
             <li class="nav-item dropdown"><a class="nav-link py-0" data-coreui-toggle="dropdown" href="#" role="button"
                     aria-haspopup="true" aria-expanded="false">
-                    <div class="avatar avatar-md"><img class="avatar-img"
-                            src="https://avatars.githubusercontent.com/u/46602473?v=4" alt="user@email.com"></div>
+                    <div class="avatar avatar-md"><img class="avatar-img" src="/assets/img/ic-user.png"
+                            alt="{{ Auth::user()->email ?? '' }}"></div>
                 </a>
                 <div class="dropdown-menu dropdown-menu-end pt-0">
                     <div class="dropdown-header bg-light py-2">
                         <div class="fw-semibold">{{ Auth::user()->name ?? '' }}</div>
                     </div>
-                    <a class="dropdown-item" href="#">
+                    <a class="dropdown-item" href="/profile">
                         <svg class="icon me-2">
                             <use xlink:href="/icons/sprites/free.svg#cil-user"></use>
                         </svg>

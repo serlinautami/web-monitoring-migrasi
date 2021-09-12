@@ -32,4 +32,15 @@ class Job extends Model
     public function job_steps() {
         return $this->hasMany(JobStep::class, 'job_id', 'id');
     }
+
+    public static function boot() {
+        parent::boot();
+        self::deleting(function($job) { // before delete() method call this
+             $job->job_steps()->each(function($job_step) {
+                $job_step->delete(); // <-- direct deletion
+             });
+             // do the rest of the cleanup...
+        });
+    }
+    
 }

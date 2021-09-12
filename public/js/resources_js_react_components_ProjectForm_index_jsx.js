@@ -2385,21 +2385,30 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
+
 function CardSimpan(_ref) {
-  var onSubmit = _ref.onSubmit,
+  var isEdit = _ref.isEdit,
+      onSubmit = _ref.onSubmit,
+      onDelete = _ref.onDelete,
       loading = _ref.loading,
       disabled = _ref.disabled;
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
     className: "card mb-3",
-    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
+    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
       className: "card-body d-flex justify-content-end",
-      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("button", {
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("button", {
         onClick: onSubmit,
         className: "btn btn-primary btn-sm js-simpan-btn",
         type: "button",
         disabled: disabled,
         children: loading ? 'Tunggu Sebentar...' : 'Simpan'
-      })
+      }), isEdit && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("button", {
+        onClick: onDelete,
+        className: "btn btn-danger btn-sm js-simpan-btn ms-2",
+        type: "button",
+        disabled: disabled,
+        children: loading ? 'Tunggu Sebentar...' : 'Hapus'
+      })]
     })
   });
 }
@@ -2509,7 +2518,7 @@ function CardStatus(_ref) {
           className: "form-label",
           children: "Status Migrasi"
         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("select", {
-          value: form.status_migrasi,
+          value: form.status_migrasi || '',
           name: "status_migrasi",
           className: "form-select",
           onChange: onChange,
@@ -2530,7 +2539,7 @@ function CardStatus(_ref) {
           name: "staging",
           className: "form-select",
           onChange: onChange,
-          value: form.staging,
+          value: form.staging || '',
           disabled: disabled,
           children: statusStaging.map(function (option, index) {
             return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("option", {
@@ -2549,7 +2558,7 @@ function CardStatus(_ref) {
           className: "form-select",
           disabled: disabled,
           onChange: onChange,
-          value: form.status_upload,
+          value: form.status_upload || '',
           children: statusUpload.map(function (option, index) {
             return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("option", {
               value: option.value,
@@ -2566,7 +2575,7 @@ function CardStatus(_ref) {
           name: "status_running",
           className: "form-select",
           onChange: onChange,
-          value: form.status_running,
+          value: form.status_running || '',
           disabled: disabled,
           children: statusRunning.map(function (option, index) {
             return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("option", {
@@ -2584,7 +2593,7 @@ function CardStatus(_ref) {
           name: "status_import",
           className: "form-select",
           onChange: onChange,
-          value: form.status_import,
+          value: form.status_import || '',
           disabled: disabled,
           children: statusImport.map(function (option, index) {
             return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("option", {
@@ -3009,6 +3018,7 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 var initialFormProject = {
+  id: null,
   package_id: "",
   project_name: "",
   status_migrasi: "",
@@ -3043,7 +3053,8 @@ var modalObject = {
 };
 
 function ProjectForm(_ref) {
-  var packageId = _ref.packageId;
+  var packageId = _ref.packageId,
+      projectId = _ref.projectId;
 
   var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false),
       _useState2 = _slicedToArray(_useState, 2),
@@ -3079,7 +3090,6 @@ function ProjectForm(_ref) {
     return (v === null || v === void 0 ? void 0 : v.id) === selectedJob;
   })[0];
   var inputDisabled = loading;
-  console.log('formProject', formProject);
 
   function modal(id) {
     var element = document.getElementById(id);
@@ -3309,8 +3319,9 @@ function ProjectForm(_ref) {
   function saveProjectData(data) {
     console.log('request', data);
     setLoading(true);
+    var url = projectId ? "/package/".concat(packageId, "/project/edit/").concat(projectId) : "/package/".concat(packageId, "/project/add");
     axios__WEBPACK_IMPORTED_MODULE_11___default()({
-      url: "/package/".concat(packageId, "/project/add"),
+      url: url,
       method: 'POST',
       data: data,
       headers: {
@@ -3322,17 +3333,31 @@ function ProjectForm(_ref) {
     }).then(function (result) {
       var data = result === null || result === void 0 ? void 0 : result.data;
       setLoading(false);
-      setAlert({
-        show: true,
-        message: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__.jsxs)("div", {
-          children: ["Berhasil menyimpan data project, untuk melihat hasilnya ", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__.jsx)("a", {
-            href: "/package/".concat(packageId, "/project/").concat(data === null || data === void 0 ? void 0 : data.project_id),
-            children: "klik di sini"
-          })]
-        }),
-        type: 'success'
-      });
-      setFormProject(initialFormProject);
+
+      if (projectId) {
+        setAlert({
+          show: true,
+          message: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__.jsxs)("div", {
+            children: ["Berhasil memperbarui data project, untuk melihat hasilnya ", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__.jsx)("a", {
+              href: "/package/".concat(packageId, "/project/").concat(data === null || data === void 0 ? void 0 : data.project_id),
+              children: "klik di sini"
+            })]
+          }),
+          type: 'success'
+        }); // setFormProject(initialFormProject);
+      } else {
+        setAlert({
+          show: true,
+          message: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__.jsxs)("div", {
+            children: ["Berhasil menyimpan data project, untuk melihat hasilnya ", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__.jsx)("a", {
+              href: "/package/".concat(packageId, "/project/").concat(data === null || data === void 0 ? void 0 : data.project_id),
+              children: "klik di sini"
+            })]
+          }),
+          type: 'success'
+        });
+        setFormProject(initialFormProject);
+      }
     })["catch"](function (err) {
       console.log('err', err);
       setLoading(false);
@@ -3366,7 +3391,92 @@ function ProjectForm(_ref) {
     setAlert(initialAlert);
   }
 
-  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {}, []);
+  var getProjectData = (0,react__WEBPACK_IMPORTED_MODULE_0__.useCallback)(function () {
+    if (packageId && projectId) {
+      setLoading(true);
+      setAlert({
+        show: true,
+        message: 'Sedang Memuat data....',
+        type: 'warning'
+      });
+      axios__WEBPACK_IMPORTED_MODULE_11___default()({
+        url: "/package/".concat(packageId, "/project/").concat(projectId, "?content=json"),
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      }).then(function (res) {
+        return res.data;
+      }).then(function (result) {
+        setLoading(false);
+        setAlert({
+          show: false,
+          message: '',
+          type: 'primary'
+        });
+        var data = result === null || result === void 0 ? void 0 : result.data;
+
+        if (data) {
+          setFormProject({
+            id: data === null || data === void 0 ? void 0 : data.id,
+            package_id: data === null || data === void 0 ? void 0 : data.package_id,
+            project_name: data === null || data === void 0 ? void 0 : data.project_name,
+            status_migrasi: (data === null || data === void 0 ? void 0 : data.status_migrasi) || '',
+            staging: (data === null || data === void 0 ? void 0 : data.staging) || '',
+            status_upload: (data === null || data === void 0 ? void 0 : data.status_upload) || '',
+            status_running: (data === null || data === void 0 ? void 0 : data.status_running) || '',
+            status_import: (data === null || data === void 0 ? void 0 : data.status_import) || '',
+            original_path: (data === null || data === void 0 ? void 0 : data.original_path) || '',
+            keterangan: (data === null || data === void 0 ? void 0 : data.keterangan) || '',
+            jobs: data === null || data === void 0 ? void 0 : data.jobs
+          });
+        }
+      })["catch"](function (err) {
+        setLoading(false);
+        setAlert({
+          show: true,
+          message: (err === null || err === void 0 ? void 0 : err.message) || 'Terjadi Kesalahan',
+          type: 'danger'
+        });
+      });
+    }
+  }, [packageId, projectId]);
+
+  function onDeleteProject() {
+    var conf = window.confirm('Yakin ingin menghapus project? Menghapus project akan menghapuskan Job dan Job Step yang sudah diinput sebelumnya');
+
+    if (conf) {
+      setLoading(true);
+      setAlert({
+        show: true,
+        message: 'Sedang memproses....',
+        type: 'warning'
+      });
+      axios__WEBPACK_IMPORTED_MODULE_11___default()["delete"]("/package/".concat(packageId, "/project/delete/").concat(projectId)).then(function (res) {
+        return res.data;
+      }).then(function () {
+        setLoading(false);
+        setAlert({
+          show: true,
+          message: 'Berhasil menghapus data project',
+          type: 'success'
+        });
+        setFormProject(initialFormProject);
+        window.location.href = "/package/".concat(packageId);
+      })["catch"](function (err) {
+        setLoading(false);
+        setAlert({
+          show: true,
+          message: (err === null || err === void 0 ? void 0 : err.message) || 'Terjadi Kesalahan',
+          type: 'danger'
+        });
+      });
+    }
+  }
+
+  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
+    getProjectData();
+  }, [getProjectData]);
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__.jsxs)(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, {
     children: [alert.show && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__.jsx)(_Alert__WEBPACK_IMPORTED_MODULE_10__["default"], {
       message: alert.message,
@@ -3405,6 +3515,8 @@ function ProjectForm(_ref) {
             form: formProject,
             disabled: inputDisabled
           }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__.jsx)(_CardSimpan__WEBPACK_IMPORTED_MODULE_5__["default"], {
+            onDelete: onDeleteProject,
+            isEdit: Boolean(projectId),
             onSubmit: onSubmitForm,
             disabled: inputDisabled,
             loading: loading

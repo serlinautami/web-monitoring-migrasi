@@ -28,6 +28,20 @@ class Controller extends BaseController
                 return 'Sudah Deploy';
             case 'rollback':
                 return 'Rollback';
+            case 'migrated':
+                return 'Sudah dimigrasi';
+            case 'not-migrated':
+                return 'Tidak dimigrasi';
+            case 'running':
+                return 'Running';
+            case 'pending':
+                return 'Pending';
+            case 'fail':
+                return 'Gagal';
+            case 'imported':
+                return 'Sudah diimport';
+            case 'not-imported':
+                return 'Belum diimport';
             default:
                 return 'Tidak ada';
         }

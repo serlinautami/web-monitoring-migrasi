@@ -1,16 +1,23 @@
 @extends('layouts.container')
 
-@section('title') Form Package @stop
+@section('title')
+    @if ($package)
+        Edit Package {{ $package->ip_server }} - Web Manajemen Migrasi BRI
+    @else
+        Tambah Package - Web Manajemen Migrasi BRI
+    @endif
+@stop
 
 @section('breadcrumb')
     <div class="container-fluid">
         <nav aria-label="breadcrumb">
             <ol class="breadcrumb my-0 ms-2">
                 <li class="breadcrumb-item">
-                    <span>Home</span>
+                    <a href="/">Home</a>
                 </li>
-                <li class="breadcrumb-item"><span>Package</span></li>
-                <li class="breadcrumb-item active"><span>Form Package</span></li>
+                <li class="breadcrumb-item"><a href="/package">Package</a></li>
+                <li class="breadcrumb-item active"><span>{{ $package ? 'Edit / ' . $package->ip_server : 'Tambah' }}</span>
+                </li>
             </ol>
         </nav>
     </div>

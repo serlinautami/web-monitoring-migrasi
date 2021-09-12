@@ -1,12 +1,6 @@
 @extends('layouts.container')
 @section('title')
-    @if ($user)
-        Edit User {{ $user->name }} - Web Manajemen Migrasi BRI
-    @else
-
-        Tambah User - Web Manajemen Migrasi BRI
-
-    @endif
+    Profile - Web Manajemen Migrasi BRI
 @stop
 
 @section('breadcrumb')
@@ -14,9 +8,7 @@
         <nav aria-label="breadcrumb">
             <ol class="breadcrumb my-0 ms-2">
                 <li class="breadcrumb-item"><a href="/" title="Home">Home</a></li>
-                <li class="breadcrumb-item"><a href="/user" title="User">User</a></li>
-                <li class="breadcrumb-item active"><span>{{ $user ? 'Edit / ' . $user->name : 'Tambah' }}</span>
-                </li>
+                <li class="breadcrumb-item active"><span>Profile</span></li>
             </ol>
         </nav>
     </div>
@@ -27,13 +19,13 @@
     <div class="container-lg">
         <div class="row">
             <div class="col-12">
-                <div class="card">
-                    <div class="card-header">
-                        <h5><strong>Form User</strong></h5>
-                    </div>
-                    <div class="card-body">
-                        <form method="POST" action="@if ($user) /user/edit/{{ $user->id }} @else /user/add @endif">
-                            @csrf
+                <form method="POST" action="/profile">
+                    @csrf
+                    <div class="card mb-3">
+                        <div class="card-header">
+                            <span><strong>Profile</strong></span>
+                        </div>
+                        <div class="card-body">
                             <div class="row">
                                 <div class="col-12 col-sm-12 col-md-6 col-lg-6">
                                     <div class="form-group mb-3">
@@ -64,23 +56,6 @@
                                     </div>
                                 </div>
 
-                                @if (!$user)
-                                    <div class="col-12 col-sm-12 col-md-6 col-lg-6">
-                                        <div class="form-group mb-3">
-                                            <label class="form-label">Password</label>
-                                            <input name="password" required placeholder="********" type="password"
-                                                class="form-control" />
-                                            <div class="form-text">Password minimal 8 karakter</div>
-                                        </div>
-                                    </div>
-                                    <div class="col-12 col-sm-12 col-md-6 col-lg-6">
-                                        <div class="form-group mb-3">
-                                            <label class="form-label">Konfirmasi Password</label>
-                                            <input name="password_confirmation" required placeholder="********"
-                                                type="password" class="form-control" />
-                                        </div>
-                                    </div>
-                                @endif
                                 <div class="col-12 col-sm-12 col-md-6 col-lg-6">
                                     <div class="form-group mb-3">
                                         <label class="form-label">Role</label>
@@ -105,15 +80,35 @@
                                         </select>
                                     </div>
                                 </div>
-                                <div class="col-12 col-sm-12 col-md-6 col-lg-6">
-                                    <div class="form-group3">
-                                        <button class="btn btn-primary">Simpan</button>
-                                    </div>
-                                </div>
                             </div>
-                        </form>
+
+                        </div>
                     </div>
-                </div>
+
+                    <div class="card mb-3">
+                        <div class="card-header">
+                            <span><strong>Ubah Password</strong></span>
+                        </div>
+                        <div class="card-body">
+                            <div class="form-group mb-3">
+                                <label class="form-label">Password lama</label>
+                                <input type="password" name="old_password" class="form-control" placeholder="********" />
+                            </div>
+                            <div class="form-group mb-3">
+                                <label class="form-label">Password baru</label>
+                                <input type="password" name="password" class="form-control" placeholder="********" />
+                            </div>
+                            <div class="form-group mb-3">
+                                <label class="form-label">Konfirmasi Password baru</label>
+                                <input type="password" name="password_confirmation" class="form-control"
+                                    placeholder="********" />
+                            </div>
+                            <div class="form-group">
+                                <button class="btn btn-primary">Simpan</button>
+                            </div>
+                        </div>
+                    </div>
+                </form>
             </div>
         </div>
     </div>

@@ -31324,13 +31324,15 @@ var element = document.getElementById("project-form");
 
 if (element) {
   var packageId = element.getAttribute('data-package-id');
+  var projectId = element.getAttribute('data-project-id');
   react_dom__WEBPACK_IMPORTED_MODULE_1__.render( /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(react__WEBPACK_IMPORTED_MODULE_0__.StrictMode, {
     children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(react__WEBPACK_IMPORTED_MODULE_0__.Suspense, {
       fallback: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
         children: "Sedang Memuat..."
       }),
       children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(ProjectForm, {
-        packageId: packageId
+        packageId: packageId,
+        projectId: projectId
       })
     })
   }), element);

@@ -11,11 +11,11 @@
                         <form method="POST" action="/setup" class="card-body">
                             @csrf
                             <img src="assets/brand/logo.png" width="140" alt="Bank BRI" />
-                            <p class="text-medium-emphasis">Setup Managemen Migrasi</p>
+                            <p class="text-medium-emphasis">Setup Manajemen Migrasi</p>
                             @if ($errors->any())
                                 <div class="alert alert-danger">{{ $errors->first() }}</div>
                             @else
-                                <div class="alert alert-info">Selamat datang di Managemen Migrasi, Setup awal hanya satu kali
+                                <div class="alert alert-info">Selamat datang di Manajemen Migrasi, Setup awal hanya satu kali
                                     untuk
                                     menentukan Super Admin</div>
                             @endif

@@ -1,6 +1,6 @@
 @extends('layouts.authcontainer')
 @section('title')
-    Login
+    Login - Web Manajemen Migrasi BRI
 @stop
 @section('content')
     <div class="container">
@@ -11,7 +11,7 @@
                         <form method="POST" action="/login" class="card-body">
                             @csrf
                             <img src="assets/brand/logo.png" width="140" alt="Bank BRI" />
-                            <p class="text-medium-emphasis">Managemen Migrasi</p>
+                            <p class="text-medium-emphasis">Manajemen Migrasi</p>
                             @if ($errors->any())
                                 <div class="alert alert-danger">{{ $errors->first() }}</div>
                             @endif

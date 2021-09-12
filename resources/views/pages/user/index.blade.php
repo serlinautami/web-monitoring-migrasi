@@ -1,15 +1,13 @@
 @extends('layouts.container')
 
-@section('title') List User @stop
+@section('title') User - Web Manajemen Migrasi BRI @stop
 
 @section('breadcrumb')
     <div class="container-fluid">
         <nav aria-label="breadcrumb">
             <ol class="breadcrumb my-0 ms-2">
-                <li class="breadcrumb-item">
-                    <span>Home</span>
-                </li>
-                <li class="breadcrumb-item active"><span>List user</span></li>
+                <li class="breadcrumb-item"><a href="/" title="Home">Home</a></li>
+                <li class="breadcrumb-item active">User</li>
             </ol>
         </nav>
     </div>
@@ -32,10 +30,11 @@
                             <table id="user-table" class="table table-striped table-bordered">
                                 <thead>
                                     <tr>
-                                        <th>Name</th>
+                                        <th>Nama</th>
                                         <th>Email</th>
                                         <th>Status</th>
-                                        <th>Action</th>
+                                        <th>Role</th>
+                                        <th>Aksi</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -43,8 +42,10 @@
                                         @foreach ($users as $user)
                                             <tr>
                                                 <td>{{ $user->name }}</td>
-                                                <td data-email="{{ $user->email }}">{{ $user->email }}</td>
+                                                <td data-email="{{ $user->email }}"><a
+                                                        href="mailto:{{ $user->email }}">{{ $user->email }}</a></td>
                                                 <td data-status="{{ $user->status }}">{{ $user->status }}</td>
+                                                <td data-status="{{ $user->role }}">{{ $user->role }}</td>
                                                 <td width="50">
                                                     <button data-user-id="{{ $user->id }}"
                                                         class="btn btn-primary btn-sm btn-detail" type="button"

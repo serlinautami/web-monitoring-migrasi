@@ -20,8 +20,7 @@ class Package extends Model
         'jumlah_job_ssis',
         'staging',
         'total_connect',
-        'keterangan',
-        'package_id'
+        'keterangan'
     ];
 
     protected $casts = [

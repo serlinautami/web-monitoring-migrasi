@@ -14,6 +14,7 @@ import axios from 'axios';
 
 // set form
 const initialFormProject = {
+  id: null,
   package_id: "",
   project_name: "",
   status_migrasi: "",
@@ -51,8 +52,7 @@ let modalObject = {
   modalDetailJob: null
 }
 
-function ProjectForm({ packageId }) {
-
+function ProjectForm({ packageId, projectId }) {
 
   const [loading, setLoading] = useState(false);
   const [alert, setAlert] = useState(initialAlert);
@@ -65,8 +65,6 @@ function ProjectForm({ packageId }) {
 
   const inputDisabled = loading;
 
-
-  console.log('formProject', formProject)
 
   function modal(id) {
     const element = document.getElementById(id);
@@ -278,8 +276,10 @@ function ProjectForm({ packageId }) {
   function saveProjectData(data) {
     console.log('request', data);
     setLoading(true);
+    let url = projectId ? `/package/${packageId}/project/edit/${projectId}` : `/package/${packageId}/project/add`;
+
     axios({
-      url: `/package/${packageId}/project/add`,
+      url,
       method: 'POST',
       data,
       headers: {
@@ -291,14 +291,27 @@ function ProjectForm({ packageId }) {
     }).then(function (result) {
       const data = result?.data;
       setLoading(false);
-      setAlert({
-        show: true,
-        message: (
-          <div>Berhasil menyimpan data project, untuk melihat hasilnya <a href={`/package/${packageId}/project/${data?.project_id}`}>klik di sini</a></div>
-        ),
-        type: 'success'
-      });
-      setFormProject(initialFormProject);
+
+
+      if (projectId) {
+        setAlert({
+          show: true,
+          message: (
+            <div>Berhasil memperbarui data project, untuk melihat hasilnya <a href={`/package/${packageId}/project/${data?.project_id}`}>klik di sini</a></div>
+          ),
+          type: 'success'
+        });
+        // setFormProject(initialFormProject);
+      } else {
+        setAlert({
+          show: true,
+          message: (
+            <div>Berhasil menyimpan data project, untuk melihat hasilnya <a href={`/package/${packageId}/project/${data?.project_id}`}>klik di sini</a></div>
+          ),
+          type: 'success'
+        });
+        setFormProject(initialFormProject);
+      }
     }).catch(function (err) {
       console.log('err', err)
       setLoading(false);
@@ -330,9 +343,98 @@ function ProjectForm({ packageId }) {
     setAlert(initialAlert);
   }
 
+  const getProjectData = useCallback(() => {
+    if (packageId && projectId) {
+      setLoading(true);
+      setAlert({
+        show: true,
+        message: 'Sedang Memuat data....',
+        type: 'warning'
+      });
+      axios({
+        url: `/package/${packageId}/project/${projectId}?content=json`,
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      })
+        .then(res => res.data)
+        .then(result => {
+          setLoading(false);
+          setAlert({
+            show: false,
+            message: '',
+            type: 'primary'
+          })
+
+          const data = result?.data;
+
+          if (data) {
+            setFormProject({
+              id: data?.id,
+              package_id: data?.package_id,
+              project_name: data?.project_name,
+              status_migrasi: data?.status_migrasi || '',
+              staging: data?.staging || '',
+              status_upload: data?.status_upload || '',
+              status_running: data?.status_running || '',
+              status_import: data?.status_import || '',
+              original_path: data?.original_path || '',
+              keterangan: data?.keterangan || '',
+              jobs: data?.jobs,
+            });
+          }
+
+        })
+        .catch(err => {
+          setLoading(false);
+          setAlert({
+            show: true,
+            message: err?.message || 'Terjadi Kesalahan',
+            type: 'danger'
+          })
+        })
+    }
+  }, [packageId, projectId]);
+
+  function onDeleteProject() {
+    const conf = window.confirm('Yakin ingin menghapus project? Menghapus project akan menghapuskan Job dan Job Step yang sudah diinput sebelumnya');
+
+    if (conf) {
+      setLoading(true);
+      setAlert({
+        show: true,
+        message: 'Sedang memproses....',
+        type: 'warning'
+      });
+      axios.delete(`/package/${packageId}/project/delete/${projectId}`)
+        .then(res => res.data)
+        .then(() => {
+          setLoading(false);
+          setAlert({
+            show: true,
+            message: 'Berhasil menghapus data project',
+            type: 'success'
+          });
+
+          setFormProject(initialFormProject);
+          window.location.href = `/package/${packageId}`;
+        })
+        .catch(err => {
+          setLoading(false);
+          setAlert({
+            show: true,
+            message: err?.message || 'Terjadi Kesalahan',
+            type: 'danger'
+          })
+        });
+    }
+  }
+
 
   useEffect(() => {
-  }, []);
+    getProjectData();
+  }, [getProjectData]);
 
   return (
     <React.Fragment>
@@ -374,7 +476,7 @@ function ProjectForm({ packageId }) {
               form={formProject}
               disabled={inputDisabled}
             />
-            <CardSimpan onSubmit={onSubmitForm} disabled={inputDisabled} loading={loading} />
+            <CardSimpan onDelete={onDeleteProject} isEdit={Boolean(projectId)} onSubmit={onSubmitForm} disabled={inputDisabled} loading={loading} />
           </div>
         </div>
       </div>

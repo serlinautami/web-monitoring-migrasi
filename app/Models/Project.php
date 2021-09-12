@@ -19,6 +19,8 @@ class Project extends Model
         'status_upload',
         'status_running',
         'status_import',
+        'status_migrasi',
+        'original_path',
         'package_id'
     ];
 
@@ -35,5 +37,15 @@ class Project extends Model
 
     public function jobs() {
         return $this->hasMany(Job::class, 'project_id', 'id');
+    }
+
+    public static function boot() {
+        parent::boot();
+        self::deleting(function($project) { // before delete() method call this
+             $project->jobs()->each(function($job) {
+                $job->delete(); // <-- direct deletion
+             });
+             // do the rest of the cleanup...
+        });
     }
 }

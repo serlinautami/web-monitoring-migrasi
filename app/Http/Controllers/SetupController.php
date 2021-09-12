@@ -15,7 +15,7 @@ class SetupController extends Controller
     public function page(){
         $setup = SetupApp::first();
         if($setup && $setup->status == 1) {
-            return redirect('/');   
+            return abort(404);   
         }
         return view('pages.setup.index');
     }

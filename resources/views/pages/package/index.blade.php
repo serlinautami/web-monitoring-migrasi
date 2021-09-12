@@ -1,15 +1,17 @@
 @extends('layouts.container')
 
-@section('title') Package @stop
+@section('title') Package List - Web Manajemen Migrasi BRI @stop
 
 @section('breadcrumb')
     <div class="container-fluid">
         <nav aria-label="breadcrumb">
             <ol class="breadcrumb my-0 ms-2">
                 <li class="breadcrumb-item">
-                    <span>Home</span>
+                    <a href="/">Home</a>
                 </li>
-                <li class="breadcrumb-item active"><span>Package</span></li>
+                <li class="breadcrumb-item">
+                    <a href="/package">Package</a>
+                </li>
             </ol>
         </nav>
     </div>
@@ -22,7 +24,7 @@
             <div class="col-12">
                 <div class="card">
                     <div class="card-header">
-                        <h5><strong>Package</strong></h5>
+                        <h5><strong>Package List</strong></h5>
                     </div>
                     <div class="card-body">
                         <div class="form-group mb-3">

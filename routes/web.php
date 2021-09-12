@@ -7,6 +7,7 @@ use App\Http\Controllers\SetupController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\PackageController;
 use App\Http\Controllers\ProjectController;
+use App\Http\Controllers\ProfileController;
 
 
 /*
@@ -55,6 +56,11 @@ Route::get('/package/delete/{id}', [PackageController::class, 'delete_package'])
 Route::get('/package/{id}', [PackageController::class, 'detail_package_page'])->name('detail_package')->middleware('auth');
 Route::get('/package/{packageId}/project/add', [ProjectController::class, 'add_project_page'])->name('add_project')->middleware('auth');
 Route::get('/package/{packageId}/project/edit/{id}', [ProjectController::class, 'edit_project_page'])->name('edit_project')->middleware('auth');
+Route::get('/package/{packageId}/project/{id}', [ProjectController::class, 'detail_project'])->name('detail_project')->middleware('auth');
 Route::post('/package/{packageId}/project/add', [ProjectController::class, 'add_project']);
 Route::post('/package/{packageId}/project/edit/{id}', [ProjectController::class, 'edit_project']);
 Route::delete('/package/{packageId}/project/delete/{id}', [ProjectController::class, 'delete_project']);
+
+// Profile
+Route::get('/profile', [ProfileController::class, 'profile_page'])->name('profile_page')->middleware('auth');
+Route::post('/profile', [ProfileController::class, 'edit_profile'])->middleware('auth');
