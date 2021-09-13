@@ -30,10 +30,10 @@ class AuthController extends Controller
             return back()->withErrors($validator)->withInput();
         }
 
-        $credentials = $request->validate([
-            'email' => ['required', 'email'],
-            'password' => ['required'],
-        ]);
+        // $credentials = $request->validate([
+        //     'email' => ['required', 'email'],
+        //     'password' => ['required'],
+        // ]);
 
 
         if(!Auth::attempt([
@@ -47,8 +47,6 @@ class AuthController extends Controller
         }
 
         $request->session()->regenerate();
-
-
         $user = User::whereIn('status', ['active', 'nonactive'])->where('email', $request->email)->first();
 
         if($user) {

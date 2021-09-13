@@ -59,7 +59,7 @@
                                 <div class="col-12 col-sm-12 col-md-6 col-lg-6">
                                     <div class="form-group mb-3">
                                         <label class="form-label">Role</label>
-                                        <select name="role" required type="text" class="form-select">
+                                        <select disabled name="role" type="text" class="form-select">
                                             <option {{ $user && $user->role == 'contributor' ? 'selected' : '' }}
                                                 value="contributor">Kontributor</option>
                                             <option {{ $user && $user->role == 'admin' ? 'selected' : '' }} value="admin">
@@ -72,7 +72,7 @@
                                 <div class="col-12 col-sm-12 col-md-6 col-lg-6">
                                     <div class="form-group mb-4">
                                         <label class="form-label">Status</label>
-                                        <select name="status" required type="text" class="form-select">
+                                        <select disabled name="status" type="text" class="form-select">
                                             <option {{ $user && $user->status == 'nonactive' ? 'selected' : '' }}
                                                 value="nonactive">Tidak Aktif</option>
                                             <option {{ $user && $user->status == 'active' ? 'selected' : '' }}

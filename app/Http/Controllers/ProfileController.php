@@ -52,8 +52,8 @@ class ProfileController extends Controller
         $user->email = $request->email;
         $user->phone = $request->phone;
         $user->dob = $request->dob;
-        $user->status = $request->status;
-        $user->role = $request->role;
+        // $user->status = $request->status;
+        // $user->role = $request->role;
 
         if($request->password || $request->old_password || $request->password_confirmation) {
             $validator = Validator::make($request->all(), [
