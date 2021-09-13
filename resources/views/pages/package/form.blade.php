@@ -54,7 +54,7 @@ if (!$isCanInput) {
                                         <label class="form-label">IP Server</label>
                                         <input name="ip_server" type="text" class="form-control"
                                             placeholder="eg: 192.xxx.xxx" value="{{ $package->ip_server ?? '' }}"
-                                            {{ Auth::user()->role == 'contributor' ? 'disabled' : '' }} required />
+                                            {{ Auth::user()->role == 'contributor' ? 'disabled' : 'required' }} />
                                     </div>
                                 </div>
 

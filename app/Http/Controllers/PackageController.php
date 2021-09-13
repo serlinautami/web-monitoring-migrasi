@@ -23,8 +23,8 @@ class PackageController extends Controller
             $package->status_upload = $this->readStatus($package->status_upload);
             $package->status_running = $this->readStatus($package->status_running);
 
-            if(!$package->staging == 'yes') {
-                $package->stagin = 'Ada';
+            if($package->staging == 'yes') {
+                $package->staging = 'Ada';
             } else if($package->staging == 'no') {
                 $package->staging = 'Tidak ada';
             } else {
@@ -167,12 +167,15 @@ class PackageController extends Controller
             ])->withInput();
         }
 
-        $validator = Validator::make($request->all(), [
-            'ip_server' => 'required',
-        ]);
-
-        if($validator->fails()) {
-            return back()->withErrors($validator)->withInput();
+        
+        if(Auth::user()->role == 'super-admin' || Auth::user()->role == 'admin') {
+            $validator = Validator::make($request->all(), [
+                'ip_server' => 'required',
+            ]);
+    
+            if($validator->fails()) {
+                return back()->withErrors($validator)->withInput();
+            }
         }
 
         $existing = Package::where('ip_server', $request->ip_server)->first();
@@ -183,16 +186,50 @@ class PackageController extends Controller
             ])->withInput();
         }
 
-        $package->update([
-            'ip_server' => $request->ip_server,
-            'status_migrasi' => $request->status_migrasi,
-            'status_upload' => $request->status_upload,
-            'status_running' => $request->status_running,
-            'jumlah_job_ssis' => $request->jumlah_job_ssis ? $request->jumlah_job_ssis : 0 ,
-            'staging' => $request->staging,
-            'total_connect' => $request->total_connect ? $request->total_connect : 0,
-            'keterangan' => $request->keterangan,
-        ]);
+        if($request->ip_server) {
+            $package->ip_server = $request->ip_server;    
+        }
+
+        if($request->status_migrasi) {
+            $package->status_migrasi = $request->status_migrasi;    
+        }
+
+        if($request->status_upload) {
+            $package->status_upload = $request->status_upload;    
+        }
+
+        if($request->status_running) {
+            $package->status_running = $request->status_running;    
+        }
+
+        if($request->jumlah_job_ssis) {
+            $package->jumlah_job_ssis = $request->jumlah_job_ssis;    
+        }
+
+        if($request->staging) {
+            $package->staging = $request->staging;    
+        }
+
+        if($request->total_connect) {
+            $package->total_connect = $request->total_connect;    
+        }
+
+        if($request->keterangan) {
+            $package->keterangan = $request->keterangan;    
+        }
+
+        $package->save();
+
+        // $package->update([
+        //     'ip_server' => $request->ip_server,
+        //     'status_migrasi' => $request->status_migrasi,
+        //     'status_upload' => $request->status_upload,
+        //     'status_running' => $request->status_running,
+        //     'jumlah_job_ssis' => $request->jumlah_job_ssis ? $request->jumlah_job_ssis : 0 ,
+        //     'staging' => $request->staging,
+        //     'total_connect' => $request->total_connect ? $request->total_connect : 0,
+        //     'keterangan' => $request->keterangan,
+        // ]);
 
         $auth_user = Auth::user();
         
