@@ -9590,78 +9590,24 @@ var _require = __webpack_require__(/*! axios */ "./node_modules/axios/index.js")
     axios = _require["default"]; // on press detail user
 
 
-if (document.querySelector('#list-user')) {
-  var modal = document.getElementById('modaldetail');
-  modal.addEventListener('show.coreui.modal', function (e) {
-    var button = e.relatedTarget;
-    var id = button.getAttribute('data-user-id');
-    axios.get("/user/".concat(id)).then(function (res) {
-      var _res$data;
-
-      console.log('res.data', res);
-      var user = (_res$data = res.data) === null || _res$data === void 0 ? void 0 : _res$data.data;
-
-      if (user) {
-        // field
-        var name = modal.querySelector('[data-detail-name]');
-        var email = modal.querySelector('[data-detail-email]');
-        var dob = modal.querySelector('[data-detail-dob]');
-        var phone = modal.querySelector('[data-detail-phone]');
-        var role = modal.querySelector('[data-detail-role]');
-        var status = modal.querySelector('[data-detail-status]'); // action
-
-        var editBtn = modal.querySelector('.btn-edit');
-
-        var _deleteBtn = modal.querySelector('.btn-delete');
-
-        name.textContent = user.name;
-        email.textContent = user.email;
-        dob.textContent = user.dob;
-        phone.textContent = user.phone;
-        role.textContent = user.role;
-        status.textContent = user.status;
-        editBtn.setAttribute('href', "/user/edit/".concat(id));
-
-        _deleteBtn.setAttribute('data-user-id', id);
-      }
-    })["catch"](function (err) {
-      console.log('err', err);
-      window.alert('Terjadi kesalahan');
-    });
-  });
-  modal.addEventListener('hide.coreui.modal', function (e) {
-    var name = modal.querySelector('[data-detail-name]');
-    var email = modal.querySelector('[data-detail-email]');
-    var dob = modal.querySelector('[data-detail-dob]');
-    var phone = modal.querySelector('[data-detail-phone]');
-    var role = modal.querySelector('[data-detail-role]');
-    var status = modal.querySelector('[data-detail-status]');
-    var editBtn = modal.querySelector('.btn-edit');
-    editBtn.setAttribute('href', "#");
-    name.textContent = '';
-    email.textContent = '';
-    dob.textContent = '';
-    phone.textContent = '';
-    role.textContent = '';
-    status.textContent = '';
-  });
-  var deleteBtn = modal.querySelector('.btn-delete');
-  console.log('deleteBtn', deleteBtn);
+if (document.querySelector('#detail-user')) {
+  var deleteBtn = document.querySelector('.js-btn-delete');
 
   if (deleteBtn) {
-    console.log('masuk');
-
     deleteBtn.onclick = function () {
       var id = this.getAttribute('data-user-id');
+      var conf = window.confirm('Yakin ingin menghapus user?');
 
       if (id) {
-        axios["delete"]("/user/delete/".concat(id)).then(function (res) {
-          window.alert('Berhasil menghapus user');
-          window.location.reload();
-        })["catch"](function (error) {
-          console.log('error', error);
-          window.alert('Terjadi kesalahan');
-        });
+        if (conf) {
+          axios["delete"]("/user/delete/".concat(id)).then(function (res) {
+            window.alert('Berhasil menghapus user');
+            window.location.href = '/user';
+          })["catch"](function (error) {
+            console.log('error', error);
+            window.alert('Terjadi kesalahan');
+          });
+        }
       }
     };
   }

@@ -54,7 +54,7 @@ if (!$isCanInput) {
                                         <label class="form-label">IP Server</label>
                                         <input name="ip_server" type="text" class="form-control"
                                             placeholder="eg: 192.xxx.xxx" value="{{ $package->ip_server ?? '' }}"
-                                            required />
+                                            {{ Auth::user()->role == 'contributor' ? 'disabled' : '' }} required />
                                     </div>
                                 </div>
 
@@ -164,8 +164,11 @@ if (!$isCanInput) {
                                 <div class="col-12">
                                     <div class="form-group d-flex justify-content-between w-100">
                                         <button type="submit" class="btn btn-primary">Simpan</button>
-                                        @if ($package)
-                                            <a href="/package/delete/{{ $package->id }}" class="btn btn-danger">Hapus</a>
+                                        @if (Auth::user()->role == 'super-admin' || Auth::user()->role == 'admin')
+                                            @if ($package)
+                                                <a href="/package/delete/{{ $package->id }}"
+                                                    class="btn btn-danger">Hapus</a>
+                                            @endif
                                         @endif
                                     </div>
                                 </div>

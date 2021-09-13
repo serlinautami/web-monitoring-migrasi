@@ -28,10 +28,19 @@ class UserController extends Controller
     }
 
     public function add_user_page() {
+        if(Auth::user()->role != 'super-admin') {
+            return abort(404);  
+        }
+        
         return view('pages.user.form', ['user' => null]);
     }
 
     public function edit_user_page($id) {
+
+        if(Auth::user()->role != 'super-admin') {
+            return abort(404);  
+        }
+
         $user = User::whereIn('status', ['active', 'nonactive'])->where('id', $id)->first();
         if(!$user) {
             return abort(404);
@@ -185,6 +194,6 @@ class UserController extends Controller
             'description' => "Mengedit user $user->email"
         ]);
 
-        return redirect('/user')->with('success', 'Berhasil memperbarui data user');
+        return redirect("/user/$user->id")->with('success', 'Berhasil memperbarui data user');
     }
 }

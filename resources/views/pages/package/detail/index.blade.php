@@ -94,9 +94,13 @@
                         <h5><strong>Project list</strong></h5>
                     </div>
                     <div class="card-body">
-                        <div class="form-group mb-3">
-                            <a href="/package/{{ $package->id }}/project/add" class="btn btn-primary">Tambah Project</a>
-                        </div>
+                        @if (Auth::user()->role == 'super-admin' || Auth::user()->role == 'contributor')
+                            <div class="form-group mb-3">
+                                <a href="/package/{{ $package->id }}/project/add" class="btn btn-primary">Tambah
+                                    Project</a>
+                            </div>
+                        @endif
+
 
                         <div class="table-responsive">
                             <table class="table table-bordered table-hover table-striped">
@@ -146,8 +150,10 @@
                                                 <td>{{ $project->original_path }}</td>
                                                 <td>{!! nl2br($project->keterangan) !!}</td>
                                                 <td class="text-center">
-                                                    <a href="/package/{{ $package->id }}/project/edit/{{ $project->id }}"
-                                                        class="btn btn-primary btn-sm">Edit</a>
+                                                    @if (Auth::user()->role == 'super-admin' || Auth::user()->role == 'contributor')
+                                                        <a href="/package/{{ $package->id }}/project/edit/{{ $project->id }}"
+                                                            class="btn btn-primary btn-sm">Edit</a>
+                                                    @endif
                                                     <a href="/package/{{ $package->id }}/project/{{ $project->id }}"
                                                         class="btn btn-primary btn-sm">Detail</a>
                                                 </td>

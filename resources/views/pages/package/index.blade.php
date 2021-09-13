@@ -60,10 +60,9 @@
                                                 <td>{{ $package->total_connect }}</td>
                                                 <td>{{ $package->keterangan }}</td>
                                                 <td>
-                                                    @if (Auth::user()->role == 'super-admin' || Auth::user()->role == 'admin')
-                                                        <a href="/package/edit/{{ $package->id }}"
-                                                            class="btn btn-primary btn-sm">Edit</a>
-                                                    @endif
+                                                    <a href="/package/edit/{{ $package->id }}"
+                                                        class="btn btn-primary btn-sm">Edit</a>
+
                                                     <a href="/package/{{ $package->id }}"
                                                         class="btn btn-primary btn-sm">Detail</a>
                                                 </td>

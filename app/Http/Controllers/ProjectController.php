@@ -18,6 +18,11 @@ class ProjectController extends Controller
 {
     //
     public function add_project_page($packageId) {
+
+        if(Auth::user()->role != 'super-admin' && Auth::user()->role != 'contributor') {
+            return abort(404);
+        }
+
         $package = Package::find($packageId);
 
         if(!$package) {
@@ -31,6 +36,10 @@ class ProjectController extends Controller
     }
 
     public function edit_project_page($packageId, $id) {
+
+        if(Auth::user()->role != 'super-admin' && Auth::user()->role != 'contributor') {
+            return abort(404);
+        }
 
         $package = Package::find($packageId);
 

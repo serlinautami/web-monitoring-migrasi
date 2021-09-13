@@ -19,7 +19,7 @@
 @stop
 
 @section('content')
-    <div class="container-lg">
+    <div id="detail-user" class="container-lg">
         <div class="row">
             <div class="col-12">
                 <div class="card mb-3">
@@ -70,9 +70,14 @@
                                 <div class="col-12 col-sm-12 col-md-8 col-lg-9 p-2 border border-1">
                                     <p class="m-0">{{ $user->status }}</p>
                                 </div>
-
                             </div>
                         </div>
+                        @if (Auth::user()->role == 'super-admin')
+                            <div class="form-group mt-3 text-end">
+                                <a href="/user/edit/{{ $user->id }}" class="btn btn-primary btn-sm">Edit</a>
+                                <button data-user-id="{{ $user->id }}" type="button" class="btn btn-danger btn-sm js-btn-delete">Hapus</button>
+                            </div>
+                        @endif
                     </div>
                 </div>
 
